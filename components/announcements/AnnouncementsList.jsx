@@ -122,8 +122,12 @@
 import * as React from "react";
 import { Megaphone, Calendar, Info, Heart, FileText, Eye, MoreVertical, ChevronLeft, ChevronRight } from "lucide-react";
 import { typeBadgeClass, iconBgClass } from "@/lib/mock/announcementsMockData";
+import { FaBullhorn } from "react-icons/fa";
+import { FaInfo } from "react-icons/fa6";
+import { FaRegRectangleList } from "react-icons/fa6";
 
-const ICON_MAP = { megaphone: Megaphone, calendar: Calendar, info: Info, heart: Heart, notice: FileText };
+const ICON_MAP = { megaphone: FaBullhorn, calendar: Calendar, info: FaInfo, heart: Heart, notice: FaRegRectangleList };
+
 
 export function AnnouncementsList({ activeTab, announcements = [], sortOptions = [] }) {
   const [page, setPage] = React.useState(1);
@@ -164,8 +168,8 @@ export function AnnouncementsList({ activeTab, announcements = [], sortOptions =
               return (
                 <tr key={item.id}>
                   <td className="px-4 py-3">
-                    <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-full ${iconBgClass(item.icon)}`}>
-                      <Icon className="h-[18px] w-[18px]" />
+                    <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-full ${iconBgClass(item.icon)}`}>
+                      <Icon className="h-[20px] w-[20px]" />
                     </div>
                   </td>
 
@@ -175,7 +179,7 @@ export function AnnouncementsList({ activeTab, announcements = [], sortOptions =
                   </td>
 
                   <td className="px-4 py-3">
-                    <span className={`inline-flex rounded-md px-2 py-1 text-xs font-medium ${typeBadgeClass(item.type)}`}>
+                    <span className={`inline-flex rounded-sm px-2 py-1.5 text-xs font-medium ${typeBadgeClass(item.type)}`}>
                       {item.type}
                     </span>
                   </td>

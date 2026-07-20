@@ -1,11 +1,13 @@
 "use client";
 
 import { Plus, CalendarPlus, FilePlus, ClipboardList, FileBarChart } from "lucide-react";
+import { FaRegCalendarPlus } from "react-icons/fa";
+import { CiSquarePlus } from "react-icons/ci";
 
 const ICON_MAP = {
   "Add New Committee": Plus,
-  "Schedule Meeting": CalendarPlus,
-  "Add New Activity": FilePlus,
+  "Schedule Meeting": FaRegCalendarPlus,
+  "Add New Activity": CiSquarePlus,
   "Assign Task": ClipboardList,
   "Generate Report": FileBarChart,
 };

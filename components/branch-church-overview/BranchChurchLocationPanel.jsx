@@ -1,6 +1,7 @@
 "use client";
 
 import { Church } from "lucide-react";
+import { FaChurch } from "react-icons/fa";
 
 const REGION_DOT_COLOR = { "North Region": "bg-brand-700", "South Region": "bg-interactive-500", "East Region": "bg-brand-900", "West Region": "bg-accent-500" };
 
@@ -24,7 +25,7 @@ export function BranchChurchLocationPanel({ pins = [], regions = [], total }) {
               className="absolute flex h-7 w-7 -translate-x-1/2 -translate-y-full items-center justify-center rounded-full bg-brand-700 text-white shadow-card"
               style={{ top: pin.top, left: pin.left }}
             >
-              <Church className="h-3.5 w-3.5" />
+              <FaChurch className="h-3.5 w-3.5" />
             </div>
           ))}
         </div>

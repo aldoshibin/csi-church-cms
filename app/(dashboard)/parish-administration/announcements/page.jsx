@@ -60,7 +60,7 @@ export default function AnnouncementsPage() {
       {/* Tabs + list (left) | Quick Actions + Filters (right) */}
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1fr_300px]">
         <div className="space-y-4">
-          <div className="flex gap-6 rounded-lg border border-border bg-white px-4 pt-3 shadow-card">
+          {/* <div className="flex gap-6 rounded-lg border border-border bg-white px-4 pt-3 shadow-card">
             {data.tabs.map((tab) => {
               const isActive = tab === activeTab;
               return (
@@ -73,11 +73,34 @@ export default function AnnouncementsPage() {
                   )}
                 >
                   {tab}
-                  {isActive && <span className="absolute -bottom-[1px] left-0 h-[2px] w-full rounded-full bg-interactive-500" />}
+                  {isActive && <span className="absolute -bottom-[1px] left-0 h-[2px] w-full rounded-full bg-interactive-500 bpo" />}
                 </button>
               );
             })}
-          </div>
+          </div> */}
+          <div className="flex gap-6 rounded-lg border border-border bg-white px-4 pt-3 shadow-card">
+  {data.tabs.map((tab) => {
+    const isActive = tab === activeTab;
+    return (
+      <button
+        key={tab}
+        onClick={() => setActiveTab(tab)}
+        className={cn(
+          "relative pb-3 text-sm font-medium transition-colors",
+          "border-b-[3px] border-transparent",
+          isActive ? "text-interactive-500" : "text-ink-muted hover:text-ink"
+        )}
+      >
+        {tab}
+        {isActive && (
+          <span
+            className="absolute -bottom-[1px] left-0 h-2 w-full rounded-b-full border-b-2 border-l-2 border-r-2 border-[#007c72]"
+          />
+        )}
+      </button>
+    );
+  })}
+</div>
 
           <AnnouncementsList
             activeTab={activeTab}

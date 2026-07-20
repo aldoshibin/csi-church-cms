@@ -19,7 +19,10 @@ import { MeetingsTab } from "@/components/committees/tabs/MeetingsTab";
 import { TasksTab } from "@/components/committees/tabs/TasksTab";
 import { ReportsTab } from "@/components/committees/tabs/ReportsTab";
 import { cn } from "@/lib/utils";
-
+import { FaPeopleGroup } from "react-icons/fa6";
+import { FaShieldHeart } from "react-icons/fa6";
+import { FaPeopleLine } from "react-icons/fa6";
+import { FaCalendarPlus } from "react-icons/fa";
 
 export default function CommitteeActivityOverviewPage() {
   const data = COMMITTEES_MOCK;
@@ -53,12 +56,12 @@ export default function CommitteeActivityOverviewPage() {
 
       {/* 6 stat cards */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-        <ParishStatCard label="Total Committees" value={data.cards.totalCommittees.value} sublabel={data.cards.totalCommittees.sublabel} icon={Users2} />
-        <ParishStatCard label="Active Committees" value={data.cards.activeCommittees.value} sublabel={data.cards.activeCommittees.sublabel} icon={Shield} />
+        <ParishStatCard label="Total Committees" value={data.cards.totalCommittees.value} sublabel={data.cards.totalCommittees.sublabel} icon={FaPeopleGroup} />
+        <ParishStatCard label="Active Committees" value={data.cards.activeCommittees.value} sublabel={data.cards.activeCommittees.sublabel} icon={FaShieldHeart} />
         <ParishStatCard label="Pending Activities" value={data.cards.pendingActivities.value} sublabel={data.cards.pendingActivities.sublabel} icon={Clipboard} />
         <ParishStatCard label="Completed Activities" value={data.cards.completedActivities.value} sublabel={data.cards.completedActivities.sublabel} icon={CheckCircle2} />
-        <ParishStatCard label="Committee Members" value={data.cards.committeeMembers.value} sublabel={data.cards.committeeMembers.sublabel} icon={UsersRound} />
-        <ParishStatCard label="Upcoming Meetings" value={data.cards.upcomingMeetings.value} sublabel={data.cards.upcomingMeetings.sublabel} icon={CalendarCheck2} />
+        <ParishStatCard label="Committee Members" value={data.cards.committeeMembers.value} sublabel={data.cards.committeeMembers.sublabel} icon={FaPeopleLine} />
+        <ParishStatCard label="Upcoming Meetings" value={data.cards.upcomingMeetings.value} sublabel={data.cards.upcomingMeetings.sublabel} icon={FaCalendarPlus} />
       </div>
 
       {/* Tabs */}

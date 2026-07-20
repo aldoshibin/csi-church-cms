@@ -11,7 +11,11 @@ import { BranchSummaryPanel } from "@/components/branch-church-overview/BranchSu
 import { BranchQuickActions } from "@/components/branch-church-overview/BranchQuickActions";
 import { BranchChurchSummaryTable } from "@/components/branch-church-overview/BranchChurchSummaryTable";
 import { formatCurrency } from "@/lib/utils";
-
+import { FaChurch } from "react-icons/fa";
+import { HiUserGroup } from "react-icons/hi2";
+import { FaCross } from "react-icons/fa6";
+import { FaUserTie } from "react-icons/fa";
+import { FaChartLine } from "react-icons/fa6";
 
 export default function BranchChurchOverviewPage() {
   const data = BRANCH_CHURCH_OVERVIEW_MOCK;
@@ -38,11 +42,11 @@ export default function BranchChurchOverviewPage() {
 
       {/* 5 stat cards */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        <ParishStatCard label="Total Branch Churches" value={data.cards.totalBranchChurches.value} sublabel={data.cards.totalBranchChurches.sublabel} icon={Church} />
-        <ParishStatCard label="Total Members" value={data.cards.totalMembers.value.toLocaleString()} sublabel={data.cards.totalMembers.sublabel} icon={Users} />
-        <ParishStatCard label="Worship Services" value={data.cards.worshipServices.value} sublabel={data.cards.worshipServices.sublabel} icon={Cross} />
-        <ParishStatCard label="Ministries & Groups" value={data.cards.ministriesGroups.value} sublabel={data.cards.ministriesGroups.sublabel} icon={UserCog} />
-        <ParishStatCard label="Total Offerings (May)" value={formatCurrency(data.cards.totalOfferings.value)} sublabel={data.cards.totalOfferings.sublabel} icon={TrendingUp} />
+        <ParishStatCard label="Total Branch Churches" value={data.cards.totalBranchChurches.value} sublabel={data.cards.totalBranchChurches.sublabel} icon={FaChurch} />
+        <ParishStatCard label="Total Members" value={data.cards.totalMembers.value.toLocaleString()} sublabel={data.cards.totalMembers.sublabel} icon={HiUserGroup} />
+        <ParishStatCard label="Worship Services" value={data.cards.worshipServices.value} sublabel={data.cards.worshipServices.sublabel} icon={FaCross} />
+        <ParishStatCard label="Ministries & Groups" value={data.cards.ministriesGroups.value} sublabel={data.cards.ministriesGroups.sublabel} icon={FaUserTie} />
+        <ParishStatCard label="Total Offerings (May)" value={formatCurrency(data.cards.totalOfferings.value)} sublabel={data.cards.totalOfferings.sublabel} icon={FaChartLine} />
       </div>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-[1.3fr_1.3fr_1fr]">

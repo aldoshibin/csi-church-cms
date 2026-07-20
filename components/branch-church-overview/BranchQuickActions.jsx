@@ -1,12 +1,14 @@
 "use client";
 
 import { Plus, Settings2, Eye, FileEdit } from "lucide-react";
+import { FaRegCalendarPlus } from "react-icons/fa";
+import { FaRegRectangleList } from "react-icons/fa6";
 
 const ICON_MAP = {
   "Add New Branch Church": Plus,
-  "Manage Branch Churches": Settings2,
+  "Manage Branch Churches": FaRegCalendarPlus,
   "View Branch Reports": Eye,
-  "Update Branch Details": FileEdit,
+  "Update Branch Details": FaRegRectangleList,
 };
 
 
