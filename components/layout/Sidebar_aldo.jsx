@@ -203,8 +203,6 @@ function SidebarUserFooter() {
   );
 }
 
-/** Friendlier labels than the raw role enum for this footer specifically
- * (e.g. a Pastor reads as "Parish Priest" in the real screenshot). */
 const FRIENDLY_ROLE_LABELS = {
   PASTOR: "Parish Priest",
   SUPER_ADMIN: "Super Admin",

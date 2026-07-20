@@ -8,6 +8,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useAuth } from "@/contexts/AuthContext";
 import { getVisibleNavItems } from "@/lib/navigation";
+import { FaChurch } from "react-icons/fa";
+import { FaUsers } from "react-icons/fa";
+
 
 const RAIL_WIDTH = 76;
 const FULL_WIDTH = 280;
@@ -47,11 +50,11 @@ export function Sidebar({ sidebarOpen }) {
     >
       <div className="flex h-full flex-col" style={{ width: FULL_WIDTH }}>
         <div className={cn("flex h-16 shrink-0 items-center gap-3 border-b border-white/10", sidebarOpen ? "px-4" : "w-[76px] justify-center")}>
-          <Church className="h-7 w-7 shrink-0 text-white" />
+          <FaChurch className="h-10 w-10 shrink-0 text-white" />
           {sidebarOpen && (
             <div className="min-w-0 overflow-hidden">
-              <p className="truncate text-sm font-semibold leading-tight">CSI St. John's Church</p>
-              <p className="truncate text-xs text-white/60">Church Management System</p>
+              <p className="truncate text-[16px] font-semibold leading-tight">CSI St. John's Church</p>
+              <p className="truncate text-xs text-white">Church Management System</p>
             </div>
           )}
         </div>
@@ -71,8 +74,8 @@ export function Sidebar({ sidebarOpen }) {
                       href={item.href}
                       title={item.label}
                       className={cn(
-                        "flex items-center justify-center rounded-xl p-3 transition-colors",
-                        active ? "bg-white text-brand-700 shadow-sm" : "text-white/80 hover:bg-white/10 hover:text-white"
+                        "flex items-center justify-center rounded-sm p-3 transition-colors",
+                        active ? "bg-[#009688]/50 text-white shadow-[inset_3px_0_0_#26A69A]" : "text-white/80 hover:bg-white/10 hover:text-white"
                       )}
                     >
                       <Icon className="h-[18px] w-[18px] shrink-0" />
@@ -85,8 +88,8 @@ export function Sidebar({ sidebarOpen }) {
                     href={item.children[0].href}
                     title={item.label}
                     className={cn(
-                      "flex items-center justify-center rounded-xl p-3 transition-colors",
-                      active ? "bg-white text-brand-700 shadow-sm" : "text-white/80 hover:bg-white/10 hover:text-white"
+                      "flex items-center justify-center rounded-sm p-3 transition-colors",
+                      active ? "bg-[#009688]/50 text-white shadow-[inset_3px_0_0_#26A69A]" : "text-white/80 hover:bg-white/10 hover:text-white"
                     )}
                   >
                     <Icon className="h-[18px] w-[18px] shrink-0" />
@@ -101,8 +104,8 @@ export function Sidebar({ sidebarOpen }) {
                     key={item.label}
                     href={item.href}
                     className={cn(
-                      "flex items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium transition-colors",
-                      active ? "bg-white text-brand-700" : "text-white/80 hover:bg-white/10 hover:text-white"
+                      "flex items-center gap-3 rounded-sm px-2.5 py-2 text-sm font-medium transition-colors",
+                      active ? "bg-[#009688]/50 text-white shadow-[inset_3px_0_0_#26A69A]" : "text-white/80 hover:bg-white/10 hover:text-white"
                     )}
                   >
                     <Icon className="h-[18px] w-[18px] shrink-0" />
@@ -119,7 +122,7 @@ export function Sidebar({ sidebarOpen }) {
                     onClick={() => setExpandedLabel(isExpanded ? null : item.label)}
                     className={cn(
                       "flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-left text-sm font-medium transition-colors",
-                      active ? "bg-white text-brand-700" : "text-white/80 hover:bg-white/10 hover:text-white"
+                      active ? "bg-[#009688]/50 text-white shadow-[inset_3px_0_0_#26A69A]" : "text-white/80 hover:bg-white/10 hover:text-white"
                     )}
                   >
                     <Icon className="h-[18px] w-[18px] shrink-0" />
@@ -155,9 +158,34 @@ export function Sidebar({ sidebarOpen }) {
 }
 
 
+// function SubmenuList({ item, pathname }) {
+//   return (
+//     <div className="space-y-0.5 py-1">
+//       {item.children.map((child, childIndex) => {
+//         const childActive = pathname === child.href || (childIndex > 0 && pathname?.startsWith(`${child.href}/`));
+//         return (
+//           <Link
+//             key={child.href}
+//             href={child.href}
+//             className={cn(
+//               "flex items-center justify-between gap-2 rounded-sm px-3.5 py-1 transition-colors text-xs",
+//               childActive ? "bg-[#009688]/50 text-white shadow-[inset_3px_0_0_#26A69A]" : "text-white/70 hover:bg-white/10 hover:text-white"
+//             )}
+//           >
+//             <span className="flex items-center gap-2 truncate">
+//               <span className="text-white/50">–</span> {child.label}
+//             </span>
+//             {childActive && <span className="h-2 w-2 shrink-0 rounded-full bg-white" />}
+//           </Link>
+//         );
+//       })}
+//     </div>
+//   );
+// }
 function SubmenuList({ item, pathname }) {
   return (
-    <div className="space-y-0.5 py-1">
+    <div className="relative space-y-1.5 py-2 pl-4">
+      <div className="absolute bottom-2 left-[7px] top-2 w-px bg-white/20" />
       {item.children.map((child, childIndex) => {
         const childActive = pathname === child.href || (childIndex > 0 && pathname?.startsWith(`${child.href}/`));
         return (
@@ -165,8 +193,8 @@ function SubmenuList({ item, pathname }) {
             key={child.href}
             href={child.href}
             className={cn(
-              "flex items-center justify-between gap-2 rounded-full px-3.5 py-2 text-sm transition-colors",
-              childActive ? "bg-white/15 font-semibold text-white shadow-sm" : "text-white/70 hover:bg-white/10 hover:text-white"
+              "relative flex items-center justify-between gap-2 rounded-sm px-3.5 py-1.5 text-xs transition-colors",
+              childActive ? "bg-[#009688]/50 text-white shadow-[inset_3px_0_0_#26A69A]" : "text-white/70 hover:bg-white/10 hover:text-white"
             )}
           >
             <span className="flex items-center gap-2 truncate">
@@ -179,7 +207,6 @@ function SubmenuList({ item, pathname }) {
     </div>
   );
 }
-
 /** Full name + role label + chevron when open; just the avatar circle
  * when closed to the icon rail. */
 function SidebarUserFooter({ sidebarOpen }) {
@@ -216,8 +243,7 @@ function SidebarUserFooter({ sidebarOpen }) {
   );
 }
 
-/** Friendlier labels than the raw role enum for this footer specifically
- * (e.g. a Pastor reads as "Parish Priest" in the real screenshot). */
+
 const FRIENDLY_ROLE_LABELS = {
   PASTOR: "Parish Priest",
   SUPER_ADMIN: "Super Admin",

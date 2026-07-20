@@ -52,3 +52,29 @@
     background: transparent;
   }
 }
+
+.font-open-sans {
+  font-family: 'Open Sans', Arial, sans-serif !important;
+}
+
+.circle-hero {
+  position: relative;
+}
+
+.circle-hero::before,
+.circle-hero::after {
+  content: "✚";
+  position: absolute;
+  color: rgb(204, 233, 229);
+  font-size: 16px;
+  top: 30%;
+  transform: translateY(-50%);
+}
+
+.circle-hero::before {
+  left: -30px;
+}
+
+.circle-hero::after {
+  right: -30px;
+}

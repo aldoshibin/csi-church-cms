@@ -35,7 +35,7 @@ export function BranchChurchOverviewTable({ branches = [] }) {
                 <td className="px-4 py-3 text-ink">{branch.families}</td>
                 <td className="px-4 py-3 font-medium text-interactive-500">{branch.members}</td>
                 <td className="px-4 py-3 text-ink-subtle">{branch.lastService}</td>
-                <td className="px-4 py-3 text-ink-subtle">{branch.activities}</td>
+                <td className="px-4 py-3 text-[#17844d] rounded-none">{branch.activities}</td>
                 <td className="px-4 py-3">
                   <Badge variant="success">{branch.status}</Badge>
                 </td>

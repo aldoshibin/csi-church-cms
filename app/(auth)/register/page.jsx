@@ -9,6 +9,14 @@ import {
   Users, HeartHandshake, UserCog, Church as ChurchIcon,
   UsersRound, CalendarRange, HandHeart, ShieldCheck,
 } from "lucide-react";
+import { FaUsers } from "react-icons/fa6";
+import { IoShieldHalf } from "react-icons/io5";
+import { FaCalendarDay } from "react-icons/fa";
+import { FaHandHoldingHeart } from "react-icons/fa6";
+import { FaRegUser } from "react-icons/fa6";
+import { FaUsersCog } from "react-icons/fa";
+import { FaUserGroup } from "react-icons/fa6";
+import { FaChurch } from "react-icons/fa";
 
 import { AuthLayout } from "@/components/auth/AuthLayout";
 import { SocialLoginButtons } from "@/components/auth/SocialLoginButtons";
@@ -20,17 +28,17 @@ import { registerSchema } from "@/lib/validation";
 
 
 const REGISTER_FEATURES = [
-  { icon: UsersRound, title: "Member Management", description: "Keep member records organized and up to date." },
-  { icon: CalendarRange, title: "Events & Schedule", description: "Plan and manage events, meetings and services." },
-  { icon: HandHeart, title: "Giving & Contributions", description: "Track donations and generate reports with ease." },
-  { icon: ShieldCheck, title: "Secure & Reliable", description: "Your data is protected with enterprise-grade security." },
+  { icon: FaUsers, title: "Member Management", description: "Keep member records organized and up to date." },
+  { icon: FaCalendarDay, title: "Events & Schedule", description: "Plan and manage events, meetings and services." },
+  { icon: FaHandHoldingHeart, title: "Giving & Contributions", description: "Track donations and generate reports with ease." },
+  { icon: IoShieldHalf, title: "Secure & Reliable", description: "Your data is protected with enterprise-grade security." },
 ];
 
 const SIGNUP_TYPES = [
-  { value: "MEMBER", icon: User, label: "Member", description: "Join as a church member" },
-  { value: "VOLUNTEER", icon: HeartHandshake, label: "Volunteer", description: "I want to volunteer my services" },
-  { value: "STAFF", icon: Users, label: "Staff", description: "I am joining the church staff" },
-  { value: "PRIEST_PASTOR", icon: ChurchIcon, label: "Priest / Pastor", description: "I am a priest or church pastor" },
+  { value: "MEMBER", icon: FaRegUser, label: "Member", description: "Join as a church member" },
+  { value: "VOLUNTEER", icon: FaUsersCog, label: "Volunteer", description: "I want to volunteer my services" },
+  { value: "STAFF", icon: FaUserGroup, label: "Staff", description: "I am joining the church staff" },
+  { value: "PRIEST_PASTOR", icon: FaChurch, label: "Priest / Pastor", description: "I am a priest or church pastor" },
 ];
 
 
@@ -220,7 +228,7 @@ export default function RegisterPage() {
             Select Parish / Branch<span className="ml-0.5 text-danger-500">*</span>
           </label>
           <div className="relative">
-            <ChurchIcon className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-auth-muted" />
+            <FaChurch className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-auth-muted" />
             <select
               className="h-10 w-full appearance-none rounded-md border border-auth-line bg-white pl-10 pr-9 text-sm text-auth-text focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-auth focus-visible:border-auth"
               defaultValue=""

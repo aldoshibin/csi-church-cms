@@ -10,7 +10,9 @@ import { TopCategoriesPanel } from "@/components/prayer-requests/TopCategoriesPa
 import { RequestsOverTimeChart } from "@/components/prayer-requests/RequestsOverTimeChart";
 import { PrayerFilterBar } from "@/components/prayer-requests/PrayerFilterBar";
 import { RecentPrayerRequestsTable } from "@/components/prayer-requests/RecentPrayerRequestsTable";
-
+import { FaPrayingHands } from "react-icons/fa";
+import { FaBriefcase } from "react-icons/fa";
+import { FaHandHoldingHeart } from "react-icons/fa6";
 
 export default function PrayerRequestSummaryPage() {
   const data = PRAYER_REQUEST_SUMMARY_MOCK;
@@ -40,7 +42,7 @@ export default function PrayerRequestSummaryPage() {
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
         <ParishStatCard
           label="Total Requests" value={data.cards.totalRequests.value} sublabel={data.cards.totalRequests.sublabel}
-          icon={HandHeart} href="/prayers" viewLabel="View all requests"
+          icon={FaPrayingHands} href="/prayers" viewLabel="View all requests"
         />
         <ParishStatCard
           label="Active Requests" value={data.cards.activeRequests.value} sublabel={data.cards.activeRequests.sublabel}
@@ -52,11 +54,11 @@ export default function PrayerRequestSummaryPage() {
         />
         <ParishStatCard
           label="Closed Requests" value={data.cards.closedRequests.value} sublabel={data.cards.closedRequests.sublabel}
-          icon={Briefcase} href="/prayers?status=closed" viewLabel="View closed requests"
+          icon={FaBriefcase} href="/prayers?status=closed" viewLabel="View closed requests"
         />
         <ParishStatCard
           label="Requests This Month" value={data.cards.requestsThisMonth.value} sublabel={data.cards.requestsThisMonth.sublabel}
-          icon={UserPlus} href="/prayers?range=month" viewLabel="View monthly requests"
+          icon={FaHandHoldingHeart} href="/prayers?range=month" viewLabel="View monthly requests"
         />
       </div>
 

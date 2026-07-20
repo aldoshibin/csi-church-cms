@@ -2,14 +2,20 @@
 
 import { Wine, Church, HandHeart, Cross, Heart, Flower2 } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
+import { FaWineGlass } from "react-icons/fa6";
+import { FaChurch } from "react-icons/fa";
+import { FaPersonPraying } from "react-icons/fa6";
+import { FaHandsPraying } from "react-icons/fa6";
+import { FaRing } from "react-icons/fa";
+import { FaCross } from "react-icons/fa6";
 
 const CARD_ICONS = {
-  totalSacraments: Wine,
-  baptisms: Church,
-  holyCommunions: HandHeart,
-  confirmations: Cross,
-  marriages: Heart,
-  funerals: Flower2,
+  totalSacraments: FaWineGlass,
+  baptisms: FaChurch,
+  holyCommunions: FaPersonPraying,
+  confirmations: FaHandsPraying,
+  marriages: FaRing,
+  funerals: FaCross,
 };
 
 
@@ -33,11 +39,11 @@ export function SacramentOverviewPanel({ overview, byLocation }) {
           {cards.map((card) => {
             const Icon = CARD_ICONS[card.key];
             return (
-              <div key={card.key} className="flex flex-col items-start gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-700 text-white">
+              <div key={card.key} className="flex justify-center items-center gap-2 border md:border-0 md:border-r">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-700 text-white shadow-[0_8px_16px_rgba(0,150,199,0.20)]">
                   <Icon className="h-[18px] w-[18px]" />
                 </div>
-                <div>
+                <div className="">
                   <p className="whitespace-pre-line text-xs font-medium text-ink">{card.label}</p>
                   <p className="text-xl font-bold text-ink font-display">{card.value}</p>
                   <p className="text-xs text-ink-subtle">{card.sublabel}</p>

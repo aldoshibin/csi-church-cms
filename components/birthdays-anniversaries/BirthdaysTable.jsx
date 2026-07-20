@@ -57,7 +57,7 @@ export function BirthdaysTable({ title, todaysDate, records = [], viewAllHref, v
                 </td>
                 <td className="px-4 py-3 text-ink">{record.age}</td>
                 <td className="px-4 py-3">
-                  <span className={`inline-flex rounded-md px-2 py-1 text-xs font-medium ${genderBadgeClass(record.gender)}`}>
+                  <span className={`inline-flex rounded-sm px-2 py-1.5 text-xs font-medium ${genderBadgeClass(record.gender)}`}>
                     {record.gender}
                   </span>
                 </td>

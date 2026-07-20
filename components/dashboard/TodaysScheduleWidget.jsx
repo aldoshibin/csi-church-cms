@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function TodaysScheduleWidget({ schedule = [] }) {
   return (
-    <div className="rounded-lg border border-border bg-white p-4 shadow-card">
+    <div className=" border border-border bg-white p-4 shadow-card">
       <div className="mb-3 flex items-center justify-between">
         <h3 className="text-sm font-semibold text-interactive-500">Today's Schedule</h3>
         <Link href="/attendance" className="text-xs font-medium text-interactive-500 hover:underline">

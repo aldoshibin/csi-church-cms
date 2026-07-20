@@ -11,6 +11,12 @@ import { EventsServicesTable } from "@/components/events-services/EventsServices
 import { EventCalendarFull } from "@/components/events-services/EventCalendarFull";
 import { AddEventModal } from "@/components/events-services/AddEventModal";
 
+import { IoCalendarClearOutline } from "react-icons/io5";
+import { FaUsers } from "react-icons/fa6";
+import { FaCross } from "react-icons/fa6";
+import { FaUsersLine } from "react-icons/fa6";
+import { FaBullhorn } from "react-icons/fa6";
+
 
 const PAGE_SIZE = 8;
 
@@ -81,23 +87,23 @@ export default function UpcomingEventsServicesPage() {
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
         <ParishStatCard
           label="Total Events" value={data.cards.totalEvents.value} sublabel={data.cards.totalEvents.sublabel}
-          icon={CalendarDays} href="/events" viewLabel="View Calendar"
+          icon={IoCalendarClearOutline} href="/events" viewLabel="View Calendar"
         />
         <ParishStatCard
           label="Services" value={data.cards.services.value} sublabel={data.cards.services.sublabel}
-          icon={Users} href="/events?category=services" viewLabel="View Services"
+          icon={FaUsers} href="/events?category=services" viewLabel="View Services"
         />
         <ParishStatCard
           label="Special Services" value={data.cards.specialServices.value} sublabel={data.cards.specialServices.sublabel}
-          icon={Cross} href="/events?category=special-services" viewLabel="View Details"
+          icon={FaCross} href="/events?category=special-services" viewLabel="View Details"
         />
         <ParishStatCard
           label="Retreats & Programs" value={data.cards.retreatsPrograms.value} sublabel={data.cards.retreatsPrograms.sublabel}
-          icon={Users} href="/events?category=retreats" viewLabel="View Details"
+          icon={FaUsersLine} href="/events?category=retreats" viewLabel="View Details"
         />
         <ParishStatCard
           label="Registrations" value={data.cards.registrations.value} sublabel={data.cards.registrations.sublabel}
-          icon={Megaphone} href="/events/registrations" viewLabel="View Registrations"
+          icon={FaBullhorn} href="/events/registrations" viewLabel="View Registrations"
         />
       </div>
 

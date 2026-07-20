@@ -51,17 +51,7 @@ export const COUNTRY_CODES = [
   { value: "AE", dialCode: "+971", label: "AE +971" },
 ];
 
-/**
- * Options below this line support Individual Member Registration
- * (app/(dashboard)/members/individual-registration). BLOOD_GROUP_OPTIONS,
- * NATIONALITY_OPTIONS, MEMBER_CATEGORY_OPTIONS, EDUCATION_OPTIONS, and
- * BAPTIZED_OPTIONS aren't backed by a real backend enum anywhere else in
- * this codebase — they're a reasonable default set, not confirmed against
- * members/models.py. INDIAN_STATES is plain reference data (real, not a
- * guess). BRANCH_CHURCH_OPTIONS is a placeholder — same situation as
- * lib/mock/branchChurchOverviewMockData.js: no branch-listing endpoint
- * exists in services/ yet.
- */
+
 export const BLOOD_GROUP_OPTIONS = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"];
 
 export const NATIONALITY_OPTIONS = ["Indian", "Other"];
@@ -90,7 +80,6 @@ export const BAPTIZED_OPTIONS = [
   { value: "NO", label: "No" },
 ];
 
-// TODO: replace with a real church/branch list once a branch service exists.
 export const BRANCH_CHURCH_OPTIONS = [
   "St. John's Cathedral",
   "St. Mark's Church",
@@ -106,7 +95,6 @@ export const INDIAN_STATES = [
   "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura",
   "Uttar Pradesh", "Uttarakhand", "West Bengal", "Delhi", "Jammu and Kashmir", "Ladakh",
 ];
-
 
 export const DISTRICTS = [
   "Chennai", "Coimbatore", "Kanyakumari", "Madurai", "Salem", "Tiruchirappalli",
@@ -269,6 +257,33 @@ export const SENIOR_MINISTRY_OPTIONS = [
  * client-side from gender, not a separate backend field.
  */
 export const REGISTRY_AGE_GROUP_OPTIONS = ["60 - 69 Years", "70 - 79 Years", "80+ Years"];
+
+/**
+ * Options below this line support the Baptism Register list page and its
+ * Add New Baptism wizard (app/(dashboard)/sacraments/baptism). No
+ * Baptism/Sacrament model or endpoint is confirmed anywhere in this
+ * codebase — same situation as the Sacramental Records overview page —
+ * so these are reasonable defaults, not confirmed against a backend.
+ */
+export const RELIGION_OPTIONS = ["Christian", "Hindu", "Muslim", "Other"];
+
+export const NATIONALITY_SELECT_OPTIONS = ["Indian", "Other"];
+
+export const PLACE_OF_BAPTISM_OPTIONS = ["Church Sanctuary", "Baptismal Font", "Home", "Hospital", "Other"];
+
+export const DENOMINATION_OPTIONS = ["Church of South India (CSI)", "Roman Catholic", "Church of North India (CNI)", "Other"];
+
+export const BAPTISM_TYPE_OPTIONS = [
+  { value: "INFANT", label: "Infant Baptism" },
+  { value: "ADULT", label: "Adult Baptism" },
+  { value: "RE_BAPTISM", label: "Re-Baptism" },
+];
+
+export const BAPTISM_SERVICE_TYPE_OPTIONS = ["Sunday Service", "Special Service", "Private Ceremony", "Other"];
+
+export const GODPARENT_RELATIONSHIP_OPTIONS = ["Father", "Mother", "Uncle", "Aunt", "Family Friend", "Other"];
+
+export const DOCUMENT_STATUS_OPTIONS = ["Pending", "Uploaded"];
 
 /**
  * Options below this line support Member Photo Management

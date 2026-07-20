@@ -1,13 +1,15 @@
 "use client";
 
 import { Users, Landmark, Music, Sparkles, HandHeart } from "lucide-react";
-
+import { FaUsers } from "react-icons/fa6";
+import { FaChild } from "react-icons/fa";
+import { FaHandshakeAngle } from "react-icons/fa6";
 const ICON_MAP = {
-  "Parish Council": Users,
+  "Parish Council": FaUsers,
   "Finance Committee": Landmark,
   "Worship Committee": Music,
-  "Youth Committee": Sparkles,
-  "Outreach Committee": HandHeart,
+  "Youth Committee": FaChild,
+  "Outreach Committee": FaHandshakeAngle,
 };
 
 export function CommitteeActivityWidget({ committees = [] }) {
@@ -20,7 +22,9 @@ export function CommitteeActivityWidget({ committees = [] }) {
           const percent = Math.round((committee.filled / committee.capacity) * 100);
           return (
             <li key={committee.id} className="flex items-center gap-3">
+               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#DFF7F1] text-[#00897b]">
               <Icon className="h-4 w-4 shrink-0 text-interactive-500" />
+              </div>
               <div className="min-w-0 flex-1">
                 <div className="mb-1 flex items-center justify-between gap-2">
                   <span className="truncate text-sm text-ink">{committee.name}</span>

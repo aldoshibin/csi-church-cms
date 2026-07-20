@@ -9,6 +9,9 @@ import { BirthdayStatCard } from "@/components/birthdays-anniversaries/BirthdayS
 import { BirthdayTabsAndFilters } from "@/components/birthdays-anniversaries/BirthdayTabsAndFilters";
 import { BirthdaysTable } from "@/components/birthdays-anniversaries/BirthdaysTable";
 import { AnniversariesTable } from "@/components/birthdays-anniversaries/AnniversariesTable";
+import { FaCakeCandles } from "react-icons/fa6";
+import { FaCalendarCheck } from "react-icons/fa";
+import { FaRing } from "react-icons/fa";
 
 
 export default function BirthdaysAnniversariesPage() {
@@ -36,14 +39,14 @@ export default function BirthdaysAnniversariesPage() {
       </div>
 
       {/* 4 stat cards in one card row, divided by vertical borders */}
-      <div className="grid grid-cols-1 divide-y divide-border rounded-lg border border-border bg-white shadow-card sm:grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4">
+      <div className="grid grid-cols-1 divide-y divide-border  border border-border bg-white shadow-card sm:grid-cols-2 sm:divide-y-0 sm:divide-x lg:grid-cols-4">
         <BirthdayStatCard
           label="Upcoming Birthdays" value={data.cards.upcomingBirthdays.value} sublabel={data.cards.upcomingBirthdays.sublabel}
-          icon={Cake} href="/parish-administration/birthdays-anniversaries" viewLabel="View all upcoming birthdays"
+          icon={FaCakeCandles} href="/parish-administration/birthdays-anniversaries" viewLabel="View all upcoming birthdays"
         />
         <BirthdayStatCard
           label="Upcoming Wedding Anniversaries" value={data.cards.upcomingAnniversaries.value} sublabel={data.cards.upcomingAnniversaries.sublabel}
-          icon={CalendarCheck2} href="/parish-administration/birthdays-anniversaries" viewLabel="View all upcoming anniversaries"
+          icon={FaCalendarCheck} href="/parish-administration/birthdays-anniversaries" viewLabel="View all upcoming anniversaries"
         />
         <BirthdayStatCard
           label="Total Birthdays (This Year)" value={data.cards.totalBirthdaysThisYear.value} sublabel={data.cards.totalBirthdaysThisYear.sublabel}
@@ -51,7 +54,7 @@ export default function BirthdaysAnniversariesPage() {
         />
         <BirthdayStatCard
           label="Total Wedding Anniversaries (This Year)" value={data.cards.totalAnniversariesThisYear.value} sublabel={data.cards.totalAnniversariesThisYear.sublabel}
-          icon={Megaphone} href="/reports" viewLabel="View anniversary report"
+          icon={FaRing} href="/reports" viewLabel="View anniversary report"
         />
       </div>
 

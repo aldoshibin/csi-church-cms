@@ -10,11 +10,12 @@ import { AnnouncementsList } from "@/components/announcements/AnnouncementsList"
 import { AnnouncementsSidebar } from "@/components/announcements/AnnouncementsSidebar";
 import { CreateAnnouncementModal } from "@/components/announcements/CreateAnnouncementModal";
 import { cn } from "@/lib/utils";
+import { FaBullhorn } from "react-icons/fa6";
 
 
 export default function AnnouncementsPage() {
   const data = ANNOUNCEMENTS_MOCK;
-  const [activeTab, setActiveTab] = React.useState("Active");
+  const [activeTab, setActiveTab] = React.useState("All Announcements");
   const [createModalOpen, setCreateModalOpen] = React.useState(false);
 
   return (
@@ -48,7 +49,7 @@ export default function AnnouncementsPage() {
         />
         <ParishStatCard
           label="Published" value={data.cards.published.value} sublabel={data.cards.published.sublabel}
-          icon={CheckCircle2} href="#" viewLabel="View active announcements"
+          icon={Send} href="#" viewLabel="View active announcements"
         />
         <ParishStatCard
           label="Scheduled" value={data.cards.scheduled.value} sublabel={data.cards.scheduled.sublabel}

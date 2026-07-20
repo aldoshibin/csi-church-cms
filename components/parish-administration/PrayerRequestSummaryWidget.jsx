@@ -29,7 +29,7 @@ export function PrayerRequestSummaryWidget({ total, breakdown = [] }) {
         <ul className="flex-1 space-y-2">
           {breakdown.map((item) => (
             <li key={item.label} className="flex items-center gap-2 text-xs">
-              <span className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ backgroundColor: item.color }} />
+              <span className="h-2.5 w-2.5 shrink-0 " style={{ backgroundColor: item.color }} />
               <span className="flex-1 text-ink-muted">{item.label}</span>
               <span className="font-medium text-ink">{item.count} ({item.percent}%)</span>
             </li>

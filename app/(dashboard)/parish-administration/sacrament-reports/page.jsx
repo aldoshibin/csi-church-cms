@@ -16,8 +16,7 @@ import { SacramentRecordsTable } from "@/components/sacrament-reports/SacramentR
 
 export default function SacramentReportsPage() {
   const data = SACRAMENT_REPORTS_MOCK;
-  const [activeTab, setActiveTab] = React.useState("Holy Communions");
-
+  const [activeTab, setActiveTab] = React.useState("All Sacraments");
   const records = React.useMemo(() => getTabRecords(data, activeTab), [data, activeTab]);
   const recordLabel = getTabRecordLabel(activeTab);
 
@@ -25,7 +24,7 @@ export default function SacramentReportsPage() {
     <div className="space-y-5">
       {/* Header */}
       <div>
-        <h1 className="font-display text-2xl font-bold text-ink">Sacrament Reports</h1>
+        <h1 className="font-display text-[26px] font-semibold text-[#06164a]">Sacrament Reports</h1>
         <p className="mt-1 flex items-center gap-1.5 text-sm">
           <Link href="/parish-administration" className="text-interactive-500 hover:underline">
             Parish Administration

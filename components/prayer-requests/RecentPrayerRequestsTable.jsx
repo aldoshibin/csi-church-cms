@@ -53,7 +53,7 @@ export function RecentPrayerRequestsTable({ requests = [] }) {
         {viewMode === "list" ? (
           <div className="overflow-x-auto">
             <table className="w-full min-w-full text-left text-sm">
-              <thead className="border-y border-border text-xs uppercase tracking-wide text-ink-subtle">
+              <thead className="border-y border-border text-xs uppercase tracking-wide text-[#07185c] bg-[#f7f9fc]">
                 <tr>
                   {["Date Requested", "Requested By", "Request For", "Category", "Request Details", "Status", "Requested For", "Actions"].map((h) => (
                     <th key={h} className="whitespace-nowrap px-4 py-3 font-medium">{h}</th>
@@ -76,13 +76,13 @@ export function RecentPrayerRequestsTable({ requests = [] }) {
                       <p className="text-xs text-ink-subtle">{request.requestForRelation}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <span className={`inline-flex rounded-md px-2 py-1 text-xs font-medium ${categoryBadgeClass(request.category)}`}>
+                      <span className={`inline-flex rounded-sm px-2 py-1.5 text-xs font-medium ${categoryBadgeClass(request.category)}`}>
                         {request.category}
                       </span>
                     </td>
                     <td className="max-w-xs px-4 py-3 text-ink">{request.details}</td>
                     <td className="px-4 py-3">
-                      <span className={`inline-flex rounded-md px-2 py-1 text-xs font-medium ${statusBadgeClass(request.status)}`}>
+                      <span className={`inline-flex rounded-sm px-2 py-1.5 text-xs font-medium ${statusBadgeClass(request.status)}`}>
                         {request.status}
                       </span>
                     </td>

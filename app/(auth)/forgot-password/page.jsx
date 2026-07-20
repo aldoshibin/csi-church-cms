@@ -6,16 +6,19 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail, Lock, Info, Headset, ShieldCheck } from "lucide-react";
 
+
 import { AuthLayout } from "@/components/auth/AuthLayout";
 import { Input } from "@/components/ui/Input";
 import { authService } from "@/services/authService";
 import { forgotPasswordSchema } from "@/lib/validation";
+import { FaEnvelope,FaLock } from "react-icons/fa";
+import { IoShieldHalf } from "react-icons/io5";
 
 
 const FORGOT_PASSWORD_FEATURES = [
-  { icon: Mail, title: "Secure & Quick", description: "Reset your password quickly and securely." },
-  { icon: ShieldCheck, title: "Email Verification", description: "We'll send a secure link to your registered email." },
-  { icon: Lock, title: "Protect Your Account", description: "Keep your account safe with a new strong password." },
+  { icon: FaEnvelope, title: "Secure & Quick", description: "Reset your password quickly and securely." },
+  { icon: IoShieldHalf, title: "Email Verification", description: "We'll send a secure link to your registered email." },
+  { icon: FaLock, title: "Protect Your Account", description: "Keep your account safe with a new strong password." },
 ];
 
 export default function ForgotPasswordPage() {
@@ -40,8 +43,8 @@ export default function ForgotPasswordPage() {
       features={FORGOT_PASSWORD_FEATURES}
       topRight={{ type: "back", href: "/login", label: "Back to Sign in" }}
     >
-      <div className="flex flex-col items-center text-center">
-        <HeroIcon icon={Lock} />
+      <div className="flex flex-col items-center text-center ">
+        <HeroIcon icon={FaLock} />
 
         <h2 className="mt-6 text-2xl font-bold text-auth-text">Reset Your Password</h2>
         <p className="mt-3 text-sm text-auth-muted">
@@ -97,9 +100,9 @@ export default function ForgotPasswordPage() {
 
 function HeroIcon({ icon: Icon }) {
   return (
-    <div className="relative flex h-24 w-24 items-center justify-center rounded-full bg-auth-soft">
-      <Icon className="h-9 w-9 text-auth" />
-      <span className="absolute bottom-0 right-0 flex h-7 w-7 items-center justify-center rounded-full bg-auth text-xs font-bold text-white ring-4 ring-white">
+    <div className="relative  circle-hero flex h-32 w-32 items-center justify-center rounded-full bg-auth-soft">
+      <Icon className="h-14 w-14 text-auth" />
+      <span className="absolute bottom-4 right-4 flex h-7 w-7 items-center justify-center rounded-full bg-auth text-xs font-bold text-white ring-4 ring-white">
         ?
       </span>
     </div>

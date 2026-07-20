@@ -17,6 +17,12 @@ import { AnnouncementsWidget } from "@/components/dashboard/AnnouncementsWidget"
 import { MiniTableWidget } from "@/components/dashboard/MiniTableWidget";
 import { Badge } from "@/components/ui/Badge";
 import { formatCurrency } from "@/lib/utils";
+import { FaPeopleRoof } from "react-icons/fa6";
+import { FaUsers } from "react-icons/fa";
+import { FaCross } from "react-icons/fa6";
+import { FaWallet } from "react-icons/fa";
+import {DateRangeDropdown} from "@/components/dashboard/DateRangeDropdown";
+
 
 
 export default function DashboardPage() {
@@ -33,22 +39,24 @@ export default function DashboardPage() {
             Welcome back, {user?.full_name ?? "Rev. Michael"}. Here is today's parish, member, finance and ministry overview.
           </p>
         </div>
-        <button className="flex items-center gap-2 rounded-md border border-border bg-white px-3 py-2 text-sm text-ink shadow-card hover:bg-surface-muted">
+        <DateRangeDropdown onSelect={(opt) => console.log("selected range:", opt)} />
+        {/* <button className="flex items-center gap-2 rounded-md border border-border bg-white px-3 py-2 text-sm text-ink shadow-card hover:bg-surface-muted">
           <CalendarDays className="h-4 w-4 text-interactive-500" />
           Sunday, 18 May 2025
           <ChevronDown className="h-4 w-4 text-ink-subtle" />
-        </button>
+        </button> */}
+        {/* <DateRangeDropdown onSelect={(opt) => console.log("selected range:", opt)} /> */}
       </div>
 
       {/* 6 stat cards */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         <DashboardStatCard
           label="Total Families" value={data.cards.totalFamilies.value.toLocaleString()} delta={data.cards.totalFamilies.delta}
-          icon={Home} href="/families" viewLabel="View Families"
+          icon={FaPeopleRoof} href="/families" viewLabel="View Families"
         />
         <DashboardStatCard
           label="Total Members" value={data.cards.totalMembers.value.toLocaleString()} delta={data.cards.totalMembers.delta}
-          icon={Users} href="/members" viewLabel="View Members"
+          icon={FaUsers} href="/members" viewLabel="View Members"
         />
         <DashboardStatCard
           label="Active Members" value={data.cards.activeMembers.value.toLocaleString()} delta={data.cards.activeMembers.delta}
@@ -56,7 +64,7 @@ export default function DashboardPage() {
         />
         <DashboardStatCard
           label="Baptized Members" value={data.cards.baptizedMembers.value.toLocaleString()} delta={data.cards.baptizedMembers.delta}
-          icon={Droplets} href="/sacraments/baptism" viewLabel="View Register"
+          icon={FaCross} href="/sacraments/baptism" viewLabel="View Register"
         />
         <DashboardStatCard
           label="New Members" value={data.cards.newMembers.value.toLocaleString()} delta={data.cards.newMembers.delta}
@@ -64,13 +72,13 @@ export default function DashboardPage() {
         />
         <DashboardStatCard
           label="Contributions" value={formatCurrency(data.cards.contributions.value)} delta={data.cards.contributions.delta}
-          icon={Wallet} href="/finance" viewLabel="View Finance"
+          icon={FaWallet} href="/finance" viewLabel="View Finance"
         />
       </div>
 
       {/* Member Statistics chart + Upcoming Events + Today's Schedule */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[2fr_1fr_1fr]">
-        <div className="rounded-lg border border-border bg-white p-4 shadow-card">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[2fr_1.5fr_1fr]">
+        <div className=" border border-border bg-white p-4 shadow-card">
           <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
             <h3 className="text-sm font-semibold text-interactive-500">Member Statistics</h3>
             <div className="flex gap-2">
@@ -92,18 +100,18 @@ export default function DashboardPage() {
       </div>
 
       {/* Sacrament Summary + Financial Overview + Prayer Requests + Quick Actions */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4 ">
         <SacramentSummaryWidget items={data.sacramentSummary} />
 
-        <div className="rounded-lg border border-border bg-white p-4 shadow-card">
-          <h3 className="text-sm font-semibold text-interactive-500">Financial Overview</h3>
+        <div className=" border border-border bg-white p-4 shadow-card">
+          <h3 className="text-[16px] font-semibold text-[#00695C]">Financial Overview</h3>
           <p className="mb-3 text-xs text-ink-subtle">(This Month)</p>
           <div className="flex items-center gap-4">
             <FinancialDonutChart totalIncome={data.financialOverview.totalIncome} breakdown={data.financialOverview.breakdown} />
             <ul className="flex-1 space-y-2">
               {data.financialOverview.breakdown.map((item) => (
-                <li key={item.label} className="flex items-center gap-2 text-xs">
-                  <span className="h-2.5 w-2.5 shrink-0 rounded-sm" style={{ backgroundColor: item.color }} />
+                <li key={item.label} className="flex flex-wrap items-center gap-2 text-xs">
+                  <span className="h-2.5 w-2.5 shrink-0 " style={{ backgroundColor: item.color }} />
                   <span className="flex-1 text-ink-muted">{item.label}</span>
                   <span className="font-medium text-ink">{formatCurrency(item.amount)}</span>
                 </li>
@@ -117,14 +125,14 @@ export default function DashboardPage() {
       </div>
 
       {/* Bottom: Recent Registrations, Recent Contributions, Announcements */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
         <MiniTableWidget
           title="Recent Registrations"
           viewAllHref="/members"
           rows={data.recentRegistrations}
           columns={[
             { key: "name", header: "Name" },
-            { key: "type", header: "Type", render: (row) => <Badge variant="info">{row.type}</Badge> },
+            { key: "type", header: "Type" },
             { key: "date", header: "Date" },
             { key: "addedBy", header: "Added By" },
           ]}

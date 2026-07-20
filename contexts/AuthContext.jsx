@@ -5,34 +5,7 @@ import { useRouter } from "next/navigation";
 import { authService } from "@/services/authService";
 import { DEMO_USER } from "@/lib/demoUser";
 
-/**
- * AuthContext — single source of truth for "who is logged in and what can
- * they do". Wraps the whole app (see app/layout.jsx). Every page/component
- * that needs the user or a role check uses `useAuth()` rather than reading
- * localStorage directly.
- *
- * ============================== DEMO MODE ==============================
- * DEMO_MODE is a hardcoded `true` below, not an env var — originally
- * this checked `process.env.NEXT_PUBLIC_DEMO_MODE`, matching
- * middleware.js, but relying on that reaching Vercel correctly (exact
- * name, right environment scope, redeployed after setting) turned out
- * to be a real failure point: if it silently didn't take effect, real
- * `login()` would try to call a backend that doesn't exist in this demo
- * deploy, fail, and `user` would never get set — bouncing straight back
- * to /login even after middleware was fixed.
- *
- * Hardcoding it removes that whole class of "did the env var propagate"
- * uncertainty. Every method below short-circuits to an instant, fake
- * success using DEMO_USER from lib/demoUser.js instead of calling
- * authService. This is the only file (plus middleware.js) that needs to
- * know about demo mode — every page still calls the real
- * useAuth()/login()/etc. API, so nothing elsewhere needs special-casing.
- *
- * TO RESTORE REAL AUTH (once a real backend is wired up): change
- * `const isDemoMode = true;` below to `false`, or delete it and the
- * `if (isDemoMode) { ... }` branch in each method.
- * =========================================================================
- */
+
 const isDemoMode = true;
 
 const AuthContext = React.createContext(null);

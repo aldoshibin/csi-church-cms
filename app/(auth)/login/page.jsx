@@ -13,6 +13,8 @@ import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/contexts/AuthContext";
 import { useToast } from "@/contexts/ToastContext";
 import { loginSchema } from "@/lib/validation";
+import { FaChurch,FaCross  } from "react-icons/fa";
+
 
 
 export default function LoginPage() {
@@ -38,7 +40,7 @@ export default function LoginPage() {
     //   toast({ variant: "success", title: "Welcome back!", description: "You've signed in successfully." });
     //   router.push("/dashboard");
     // } catch (error) {
-      
+
     //   if (error?.errors?.email_verification_required) {
     //     toast({
     //       variant: "info",
@@ -59,12 +61,13 @@ export default function LoginPage() {
   return (
     <AuthLayout topRight={{ type: "link", href: "/register", label: "Create Account", icon: UserPlus }}>
       <div className="flex flex-col items-center text-center">
-        <div className="flex h-24 w-24 items-center justify-center rounded-full bg-auth-soft">
-          <Church className="h-10 w-10 text-auth" />
-        </div>
+        <div className=" circle-hero flex h-28 w-28 items-center justify-center rounded-full bg-auth-soft">
+          <FaChurch className="h-16 w-16 text-auth" />
+        </div> 
+        
         <h2 className="mt-6 text-3xl font-bold text-auth-text">Sign In</h2>
         <p className="mt-2 text-sm text-auth-muted">
-          Welcome back to <span className="font-bold text-auth">CSI St. John's Church</span>
+          Welcome back to <span className="font-bold text-[#00796b]">CSI St. John's Church</span>
         </p>
       </div>
 

@@ -53,7 +53,7 @@ export function SacramentRecordsTable({ recordLabel, records = [] }) {
               <thead className="border-y border-border text-xs uppercase tracking-wide text-ink-subtle">
                 <tr>
                   {["Date", "Sacrament Type", "Name", "Gender", "Age Group", "Parents / Spouse", "Location", "Officiated By"].map((h) => (
-                    <th key={h} className="whitespace-nowrap px-4 py-3 font-medium">{h}</th>
+                    <th key={h} className="whitespace-nowrap px-4 py-3 font-medium text-[#06164a] bg-[#F8FAFC]">{h}</th>
                   ))}
                 </tr>
               </thead>
@@ -66,7 +66,7 @@ export function SacramentRecordsTable({ recordLabel, records = [] }) {
                       <p className="text-xs text-ink-subtle">{record.year}</p>
                     </td>
                     <td className="px-4 py-3">
-                      <span className={`inline-flex rounded-md px-2 py-1 text-xs font-medium ${sacramentBadgeClass(record.sacramentType)}`}>
+                      <span className={`inline-flex rounded-sm px-2 py-1.5 text-xs font-medium ${sacramentBadgeClass(record.sacramentType)}`}>
                         {record.sacramentType}
                       </span>
                     </td>
@@ -76,7 +76,7 @@ export function SacramentRecordsTable({ recordLabel, records = [] }) {
                     </td>
                     <td className="px-4 py-3">
                       {record.gender !== "—" ? (
-                        <span className={`inline-flex rounded-md px-2 py-1 text-xs font-medium ${genderBadgeClass(record.gender)}`}>
+                        <span className={`inline-flex rounded-sm px-2 py-1.5 text-xs font-medium ${genderBadgeClass(record.gender)}`}>
                           {record.gender}
                         </span>
                       ) : (

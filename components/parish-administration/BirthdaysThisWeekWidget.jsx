@@ -7,7 +7,7 @@ export function BirthdaysThisWeekWidget({ people = [] }) {
       <ul className="space-y-3">
         {people.map((person) => (
           <li key={person.id} className="flex items-center gap-3">
-            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-interactive-50 text-xs font-semibold text-interactive-600">
+            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#e7f6fa] text-xs font-semibold text-[#00796b]">
               {person.initials}
             </div>
             <span className="flex-1 truncate text-sm text-ink">{person.name}</span>

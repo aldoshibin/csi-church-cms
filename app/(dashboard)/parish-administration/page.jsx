@@ -13,6 +13,11 @@ import { AnniversariesThisWeekWidget } from "@/components/parish-administration/
 import { CommitteeActivityWidget } from "@/components/parish-administration/CommitteeActivityWidget";
 import { BranchChurchOverviewTable } from "@/components/parish-administration/BranchChurchOverviewTable";
 import { ViewAllLink } from "@/components/parish-administration/ViewAllLink";
+import { IoCalendarClearOutline } from "react-icons/io5";
+import { FaTrophy } from "react-icons/fa";
+import { FaHandsPraying } from "react-icons/fa6";
+import { FaBullhorn } from "react-icons/fa6";
+import { FaChurch } from "react-icons/fa";
 
 export default function ParishAdministrationPage() {
   const data = PARISH_ADMIN_MOCK;
@@ -38,19 +43,19 @@ export default function ParishAdministrationPage() {
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         <ParishStatCard
           label="Upcoming Events" value={data.cards.upcomingEvents.value} sublabel={data.cards.upcomingEvents.sublabel}
-          icon={CalendarDays} href="/events" viewLabel="View Calendar"
+          icon={IoCalendarClearOutline} href="/events" viewLabel="View Calendar"
         />
         <ParishStatCard
           label="Sacraments This Year" value={data.cards.sacramentsThisYear.value} sublabel={data.cards.sacramentsThisYear.sublabel}
-          icon={Trophy} href="/reports" viewLabel="View Reports"
+          icon={FaTrophy} href="/reports" viewLabel="View Reports"
         />
         <ParishStatCard
           label="Prayer Requests" value={data.cards.prayerRequests.value} sublabel={data.cards.prayerRequests.sublabel}
-          icon={HandHeart} href="/prayers" viewLabel="View Summary"
+          icon={FaHandsPraying} href="/prayers" viewLabel="View Summary"
         />
         <ParishStatCard
           label="Announcements" value={data.cards.announcements.value} sublabel={data.cards.announcements.sublabel}
-          icon={Megaphone} href="/communication" viewLabel="View All"
+          icon={FaBullhorn} href="/communication" viewLabel="View All"
         />
         <ParishStatCard
           label="Active Committees" value={data.cards.activeCommittees.value} sublabel={data.cards.activeCommittees.sublabel}
@@ -58,14 +63,14 @@ export default function ParishAdministrationPage() {
         />
         <ParishStatCard
           label="Branch Churches" value={data.cards.branchChurches.value} sublabel={data.cards.branchChurches.sublabel}
-          icon={Landmark} href="/parish-administration/branches" viewLabel="View Overview"
+          icon={FaChurch} href="/parish-administration/branches" viewLabel="View Overview"
         />
       </div>
 
       {/* Upcoming Events & Services + Calendar (one shared card) | Recent Announcements (separate card) */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-[2.3fr_1fr]">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-1 xl:grid-cols-[2.3fr_1fr]">
         <div className="rounded-lg border border-border bg-white p-4 shadow-card ">
-          <h3 className="mb-5 text-sm font-semibold text-interactive-500">Upcoming Events &amp; Services</h3>
+          <h3 className="mb-5 text-[16px] font-semibold text-[#00695C]">Upcoming Events &amp; Services</h3>
 
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-[1fr_1.3fr]">
             <div>
@@ -89,31 +94,31 @@ export default function ParishAdministrationPage() {
       </div>
 
       {/* Prayer Request Summary | Birthdays | Anniversaries | Committee Activity */}
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-4">
-        <div className="rounded-lg border border-border bg-white p-4 shadow-card">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="rounded-sm border border-border bg-white p-4 shadow-card">
           <div className="mb-3 flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-interactive-500">Prayer Request Summary</h3>
+            <h3 className="text-[16px] font-semibold text-[#00695c]">Prayer Request Summary</h3>
             <ViewAllLink href="/parish-administration/prayer-requests" />
           </div>
           <PrayerRequestSummaryWidget total={data.prayerRequestSummary.total} breakdown={data.prayerRequestSummary.breakdown} />
         </div>
-        <div className="rounded-lg border border-border bg-white p-4 shadow-card">
+        <div className="rounded-sm border border-border bg-white p-4 shadow-card">
           <div className="mb-3 flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-interactive-500">Birthdays This Week</h3>
+            <h3 className="text-[16px] font-semibold text-[#00695c]">Birthdays This Week</h3>
             <ViewAllLink href="/parish-administration/birthdays-anniversaries" />
           </div>
           <BirthdaysThisWeekWidget people={data.birthdaysThisWeek} />
         </div>
-        <div className="rounded-lg border border-border bg-white p-4 shadow-card">
+        <div className="rounded-sm border border-border bg-white p-4 shadow-card">
           <div className="mb-3 flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-interactive-500">Anniversaries This Week</h3>
+            <h3 className="text-[16px] font-semibold text-[#00695c]">Anniversaries This Week</h3>
             <ViewAllLink href="/parish-administration/birthdays-anniversaries" />
           </div>
           <AnniversariesThisWeekWidget couples={data.anniversariesThisWeek} />
         </div>
-        <div className="rounded-lg border border-border bg-white p-4 shadow-card">
+        <div className="rounded-sm border border-border bg-white p-4 shadow-card">
           <div className="mb-3 flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-interactive-500">Committee Activity Overview</h3>
+            <h3 className="text-[16px] font-semibold text-[#00695c]">Committee Activity Overview</h3>
             <ViewAllLink href="/parish-administration/committees" />
           </div>
           <CommitteeActivityWidget committees={data.committees} />
@@ -123,7 +128,7 @@ export default function ParishAdministrationPage() {
       {/* Branch Church Overview */}
       <div className="rounded-lg border border-border bg-white p-4 shadow-card">
         <div className="mb-3 flex items-center justify-between">
-          <h3 className="text-sm font-semibold text-interactive-500">Branch Church Overview</h3>
+          <h3 className="text-[16px] font-semibold text-[#00695c]">Branch Church Overview</h3>
           <ViewAllLink href="/#" label="View all " />
         </div>
         <BranchChurchOverviewTable branches={data.branchChurches} />
