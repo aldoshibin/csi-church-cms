@@ -2,6 +2,7 @@
 
 import { Search, SlidersHorizontal, RotateCcw } from "lucide-react";
 import { VISITOR_STATUS_OPTIONS, VISITOR_SOURCE_OPTIONS } from "@/utils/constants";
+import { FaFilter } from "react-icons/fa6";
 
 
 export function VisitorFilterBar({ onSearchChange, onStatusChange, onSourceChange, onDateRangeChange, onReset }) {
@@ -37,11 +38,12 @@ export function VisitorFilterBar({ onSearchChange, onStatusChange, onSourceChang
         ))}
       </select>
 
-      <button className="flex h-10 items-center gap-2 rounded-md border border-border bg-white px-4 text-sm font-medium text-ink hover:bg-surface-muted">
-        <SlidersHorizontal className="h-3.5 w-3.5" /> Filter
+      <button className="flex h-10 items-center gap-2 rounded-md border border-border bg-white px-4 text-sm font-medium text-[#009688] hover:bg-surface-muted">
+        <FaFilter className="h-3.5 w-3.5 text-[#009688]" /> Filter
       </button>
-      <button onClick={onReset} className="flex h-10 items-center gap-2 rounded-md border border-border bg-white px-4 text-sm font-medium text-ink hover:bg-surface-muted">
-        <RotateCcw className="h-3.5 w-3.5" /> Reset
+      <button onClick={onReset} className="flex h-10 items-center gap-2 rounded-md border border-border bg-white px-4 text-sm font-medium text-[#009688] hover:bg-surface-muted">
+        {/* <RotateCcw className="h-3.5 w-3.5" />  */}
+        Reset
       </button>
     </div>
   );

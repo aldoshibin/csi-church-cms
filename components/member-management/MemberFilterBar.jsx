@@ -7,7 +7,7 @@ export function MemberFilterBar({ onSearchChange, onStatusChange, onBranchChange
   return (
     <div className="flex flex-wrap items-end gap-3 rounded-lg border border-border bg-white p-4 shadow-card">
       <div className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium text-ink">Search Member</span>
+        <span className="text-[12px] font-medium text-[#071351]">Search Member</span>
         <div className="relative">
           <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-subtle" />
           <input
@@ -20,7 +20,7 @@ export function MemberFilterBar({ onSearchChange, onStatusChange, onBranchChange
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium text-ink">Member Type</span>
+        <span className="text-[12px] font-medium text-[#071351]">Member Type</span>
         <select className="h-10 w-36 rounded-md border border-border px-3 text-sm text-ink">
           <option>All Types</option>
           <option>Family Head</option>
@@ -31,7 +31,7 @@ export function MemberFilterBar({ onSearchChange, onStatusChange, onBranchChange
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium text-ink">Status</span>
+        <span className="text-[12px] font-medium text-[#071351]">Status</span>
         <select
           onChange={(e) => onStatusChange(e.target.value)}
           className="h-10 w-36 rounded-md border border-border px-3 text-sm text-ink"
@@ -46,7 +46,7 @@ export function MemberFilterBar({ onSearchChange, onStatusChange, onBranchChange
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium text-ink">Branch / Church</span>
+        <span className="text-[#071351] font-medium text-[12px]">Branch / Church</span>
         <select
           onChange={(e) => onBranchChange(e.target.value)}
           className="h-10 w-36 rounded-md border border-border px-3 text-sm text-ink"
@@ -61,7 +61,7 @@ export function MemberFilterBar({ onSearchChange, onStatusChange, onBranchChange
       </div>
 
       <div className="flex flex-col gap-1.5">
-        <span className="text-sm font-medium text-ink">Age Group</span>
+        <span className="text-[12px] font-medium text-[#071351]">Age Group</span>
         <select className="h-10 w-36 rounded-md border border-border px-3 text-sm text-ink">
           <option>All Age Groups</option>
           <option>Children (0-12)</option>

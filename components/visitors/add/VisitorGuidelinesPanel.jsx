@@ -1,12 +1,16 @@
 "use client";
 
 import { Camera, Users, ShieldCheck, Heart } from "lucide-react";
+import { FaHandshake } from "react-icons/fa6";
+import { MdGroups } from "react-icons/md";
+import { FaUserShield } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 
 const GUIDELINES = [
-  { icon: Camera, text: "Thank you for visiting St. John's Church." },
-  { icon: Users, text: "Your information helps us connect with you and serve you better." },
-  { icon: ShieldCheck, text: "All information provided will be kept confidential." },
-  { icon: Heart, text: "You are always welcome here!" },
+  { icon: FaHandshake, text: "Thank you for visiting St. John's Church." },
+  { icon: MdGroups, text: "Your information helps us connect with you and serve you better." },
+  { icon: FaUserShield, text: "All information provided will be kept confidential." },
+  { icon: FaHeart, text: "You are always welcome here!" },
 ];
 
 export function VisitorGuidelinesPanel() {

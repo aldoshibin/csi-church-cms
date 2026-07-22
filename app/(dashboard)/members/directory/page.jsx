@@ -20,6 +20,9 @@ import { useToast } from "@/contexts/ToastContext";
 import { memberService } from "@/services/memberService";
 import { formatDate } from "@/lib/utils";
 import { MEMBER_DIRECTORY_MOCK } from "@/lib/mock/memberDirectoryMockData";
+import { FaFilter } from "react-icons/fa6";
+import { MOCK_MEMBERS, MOCK_MEMBERS_TOTAL_COUNT } from "@/lib/mock/membersTableMockData";
+
 
 const CATEGORY_BADGE_VARIANT = { SPOUSE: "success", CHILD: "default", INDIVIDUAL: "accent" };
 
@@ -27,10 +30,20 @@ const CATEGORY_BADGE_VARIANT = { SPOUSE: "success", CHILD: "default", INDIVIDUAL
 export default function MemberDirectoryPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const {
-    members, totalCount, isLoading, page, pageSize, setPage,
-    setSearch, filters, updateFilters, ordering, handleSortChange,
+  // const {
+  //   members, totalCount, isLoading, page, pageSize, setPage,
+  //   setSearch, filters, updateFilters, ordering, handleSortChange,
+  // } = useMembers();
+    // once live uncommand the above data
+  
+    const {
+    members: liveMembers, totalCount: liveTotalCount, isLoading, page, pageSize, setPage,
+    setSearch, filters, updateFilters, ordering, handleSortChange, refetch,
   } = useMembers();
+  // / TEMPORARY — fall back to mock data until the real API returns rows.
+  // Remove this once useMembers() is hooked up to a working backend.
+  const members = liveMembers?.length ? liveMembers : MOCK_MEMBERS;
+  const totalCount = liveMembers?.length ? liveTotalCount : MOCK_MEMBERS_TOTAL_COUNT;
 
   const mock = MEMBER_DIRECTORY_MOCK;
   const [activeTab, setActiveTab] = React.useState("all");
@@ -162,10 +175,12 @@ export default function MemberDirectoryPage() {
           <Button variant="secondary" size="sm" leftIcon={<Download className="h-4 w-4" />} onClick={handleExport} isLoading={isExporting}>
             Export
           </Button>
-          <Button variant="secondary" size="sm" leftIcon={<Search className="h-4 w-4" />} disabled title="Use the filter bar below for now">
+          <Button variant="secondary" size="sm" leftIcon={<FaFilter className="h-4 w-4" />} 
+          // onClick={handleExport} 
+          title="">
             Advanced Search
           </Button>
-          <Link href="/members/individual-registration">
+          <Link href="/members/new">
             <Button size="sm" leftIcon={<Plus className="h-4 w-4" />}>Add New Member</Button>
           </Link>
         </div>

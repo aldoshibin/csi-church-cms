@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { ChevronRight, Users, ShieldCheck, ShieldOff, UserPlus, Droplets, Home, List, Grid3x3, ChevronDown, Eye, MoreVertical } from "lucide-react";
-
+import { MemberCardGrid } from "@/components/member-management/MemberCardGrid";
 import { Table } from "@/components/ui/Table";
 import { Badge, STATUS_VARIANT_MAP } from "@/components/ui/Badge";
 import { Modal } from "@/components/ui/Modal";
@@ -21,19 +21,40 @@ import { memberService } from "@/services/memberService";
 import { formatDate } from "@/lib/utils";
 import { MEMBER_MANAGEMENT_MOCK } from "@/lib/mock/memberManagementMockData";
 import { cn } from "@/lib/utils";
+import { HiUserGroup } from "react-icons/hi2";
+import { IoShieldHalf } from "react-icons/io5";
+import { FaClipboard } from "react-icons/fa";
+import { FaCircleCheck } from "react-icons/fa6";
+import { IoCalendarClearOutline } from "react-icons/io5";
+import { MOCK_MEMBERS, MOCK_MEMBERS_TOTAL_COUNT } from "@/lib/mock/membersTableMockData";
 
 export default function MembersPage() {
   const router = useRouter();
   const { toast } = useToast();
+  // const {
+  //   members, totalCount, isLoading, page, pageSize, setPage,
+  //   setSearch, filters, updateFilters, ordering, handleSortChange, refetch,
+  // } = useMembers();
+  // once live uncommand the above data
+
   const {
-    members, totalCount, isLoading, page, pageSize, setPage,
-    setSearch, filters, updateFilters, ordering, handleSortChange, refetch,
-  } = useMembers();
+  members: liveMembers, totalCount: liveTotalCount, isLoading, page, pageSize, setPage,
+  setSearch, filters, updateFilters, ordering, handleSortChange, refetch,
+} = useMembers();
+
+// / TEMPORARY — fall back to mock data until the real API returns rows.
+// Remove this once useMembers() is hooked up to a working backend.
+const members = liveMembers?.length ? liveMembers : MOCK_MEMBERS;
+const totalCount = liveMembers?.length ? liveTotalCount : MOCK_MEMBERS_TOTAL_COUNT;
 
   const mock = MEMBER_MANAGEMENT_MOCK;
-  const [activeTab, setActiveTab] = React.useState("Member Directory");
+  const [activeTab, setActiveTab] = React.useState("All Members");
   const [formOpen, setFormOpen] = React.useState(false);
   const [editingMember, setEditingMember] = React.useState(null);
+  const [viewMode, setViewMode] = React.useState("list"); // "list" | "grid"
+
+  const handleView = (row) => router.push(`/members/${row.id}`);
+  const handleRowActions = (row) => { setEditingMember(row); setFormOpen(true); };
 
   const columns = [
     {
@@ -114,12 +135,12 @@ export default function MembersPage() {
 
       {/* 6 stat cards */}
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-        <ParishStatCard label="Total Members" value={mock.cards.totalMembers.value.toLocaleString()} sublabel={mock.cards.totalMembers.delta} icon={Users} />
-        <ParishStatCard label="Active Members" value={mock.cards.activeMembers.value.toLocaleString()} sublabel={mock.cards.activeMembers.delta} icon={ShieldCheck} />
-        <ParishStatCard label="Inactive Members" value={mock.cards.inactiveMembers.value.toLocaleString()} sublabel={mock.cards.inactiveMembers.delta} icon={ShieldOff} />
-        <ParishStatCard label={mock.cards.newMembersThisMonth.label} value={mock.cards.newMembersThisMonth.value} sublabel={mock.cards.newMembersThisMonth.delta} icon={UserPlus} />
-        <ParishStatCard label="Baptized Members" value={mock.cards.baptizedMembers.value.toLocaleString()} sublabel={mock.cards.baptizedMembers.delta} icon={Droplets} />
-        <ParishStatCard label="Families" value={mock.cards.families.value.toLocaleString()} sublabel={mock.cards.families.delta} icon={Home} />
+        <ParishStatCard label="Total Members" value={mock.cards.totalMembers.value.toLocaleString()} sublabel={mock.cards.totalMembers.delta} icon={HiUserGroup} />
+        <ParishStatCard label="Active Members" value={mock.cards.activeMembers.value.toLocaleString()} sublabel={mock.cards.activeMembers.delta} icon={IoShieldHalf} />
+        <ParishStatCard label="Inactive Members" value={mock.cards.inactiveMembers.value.toLocaleString()} sublabel={mock.cards.inactiveMembers.delta} icon={FaClipboard} />
+        <ParishStatCard label={mock.cards.newMembersThisMonth.label} value={mock.cards.newMembersThisMonth.value} sublabel={mock.cards.newMembersThisMonth.delta} icon={FaCircleCheck} />
+        <ParishStatCard label="Baptized Members" value={mock.cards.baptizedMembers.value.toLocaleString()} sublabel={mock.cards.baptizedMembers.delta} icon={HiUserGroup} />
+        <ParishStatCard label="Families" value={mock.cards.families.value.toLocaleString()} sublabel={mock.cards.families.delta} icon={IoCalendarClearOutline} />
       </div>
 
       <MemberFilterBar
@@ -152,23 +173,57 @@ export default function MembersPage() {
           <div className="min-w-0 rounded-lg border border-border bg-white shadow-card">
             <div className="flex flex-wrap items-center justify-between gap-2 p-4">
               <h3 className="text-base font-bold text-interactive-500">
-                Member Directory <span className="text-ink-subtle">({totalCount.toLocaleString()})</span>
+                {activeTab} <span className="text-ink-subtle">({totalCount.toLocaleString()})</span>
               </h3>
-              <div className="flex items-center gap-2">
+             <div className="flex items-center gap-2">
                 <button className="flex h-9 items-center gap-1.5 rounded-md border border-border px-3 text-sm font-medium text-ink hover:bg-surface-muted">
                   Bulk Actions
                   <ChevronDown className="h-3.5 w-3.5" />
                 </button>
-                <button className="flex h-8 w-8 items-center justify-center rounded-md bg-interactive-500 text-white" aria-label="List view">
+                <button
+                  onClick={() => setViewMode("list")}
+                  aria-label="List view"
+                  aria-pressed={viewMode === "list"}
+                  className={cn(
+                    "flex h-8 w-8 items-center justify-center rounded-md",
+                    viewMode === "list" ? "bg-interactive-500 text-white" : "border border-border text-ink-muted hover:bg-surface-muted"
+                  )}
+                >
                   <List className="h-4 w-4" />
                 </button>
-                <button className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-ink-muted hover:bg-surface-muted" aria-label="Grid view">
+                <button
+                  onClick={() => setViewMode("grid")}
+                  aria-label="Grid view"
+                  aria-pressed={viewMode === "grid"}
+                  className={cn(
+                    "flex h-8 w-8 items-center justify-center rounded-md",
+                    viewMode === "grid" ? "bg-interactive-500 text-white" : "border border-border text-ink-muted hover:bg-surface-muted"
+                  )}
+                >
                   <Grid3x3 className="h-4 w-4" />
                 </button>
               </div>
             </div>
 
-            <Table
+             {viewMode === "list" ? (
+              <Table
+                columns={columns}
+                data={members}
+                isLoading={isLoading}
+                selectable
+                emptyMessage="No members found"
+                emptyDescription="Try adjusting your search or filters, or add a new member."
+                sortKey={ordering.replace("-", "")}
+                sortDirection={ordering.startsWith("-") ? "desc" : "asc"}
+                onSortChange={handleSortChange}
+                onRowClick={handleView}
+                pagination={{ page, pageSize, totalCount, onPageChange: setPage }}
+              />
+            ) : (
+              <MemberCardGrid members={members} onView={handleView} onRowActions={handleRowActions} />
+            )}
+
+            {/* <Table
               columns={columns}
               data={members}
               isLoading={isLoading}
@@ -180,7 +235,7 @@ export default function MembersPage() {
               onSortChange={handleSortChange}
               onRowClick={(row) => router.push(`/members/${row.id}`)}
               pagination={{ page, pageSize, totalCount, onPageChange: setPage }}
-            />
+            /> */}
           </div>
         </div>
 

@@ -1,13 +1,18 @@
 "use client";
 
 import { Users, ShieldCheck, ShieldOff, UserPlus, Droplets } from "lucide-react";
+import { MdPeopleAlt } from "react-icons/md";
+import { CiSquareCheck } from "react-icons/ci";
+import { IoClipboard } from "react-icons/io5";
+import { FaUsersRays } from "react-icons/fa6";
+import { FaPrayingHands } from "react-icons/fa";
 
 const ROWS = (s) => [
-  { icon: Users, label: "Total Members", value: s.totalMembers.toLocaleString(), tone: "bg-interactive-500" },
-  { icon: ShieldCheck, label: "Active Members", value: `${s.activeMembers.count.toLocaleString()}`, sub: `${s.activeMembers.percent}%`, tone: "bg-success-500" },
-  { icon: ShieldOff, label: "Inactive Members", value: `${s.inactiveMembers.count.toLocaleString()}`, sub: `${s.inactiveMembers.percent}%`, tone: "bg-warning-500" },
-  { icon: UserPlus, label: "New Members (This Year)", value: s.newMembersThisYear.toLocaleString(), tone: "bg-interactive-500" },
-  { icon: Droplets, label: "Baptized Members", value: s.baptizedMembers.toLocaleString(), tone: "bg-brand-700" },
+  { icon: MdPeopleAlt, label: "Total Members", value: s.totalMembers.toLocaleString(), tone: "bg-interactive-500" },
+  { icon: CiSquareCheck, label: "Active Members", value: `${s.activeMembers.count.toLocaleString()}`, sub: `${s.activeMembers.percent}%`, tone: "bg-success-500" },
+  { icon: IoClipboard, label: "Inactive Members", value: `${s.inactiveMembers.count.toLocaleString()}`, sub: `${s.inactiveMembers.percent}%`, tone: "bg-warning-500" },
+  { icon: FaUsersRays, label: "New Members (This Year)", value: s.newMembersThisYear.toLocaleString(), tone: "bg-interactive-500" },
+  { icon: FaPrayingHands, label: "Baptized Members", value: s.baptizedMembers.toLocaleString(), tone: "bg-brand-700" },
 ];
 
 export function MemberDirectorySummaryPanel({ summary }) {
@@ -17,7 +22,7 @@ export function MemberDirectorySummaryPanel({ summary }) {
       <ul className="space-y-3">
         {ROWS(summary).map((row) => (
           <li key={row.label} className="flex items-center gap-3">
-            <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white ${row.tone}`}>
+            <div className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-white bg-[#00796B]`}>
               <row.icon className="h-4 w-4" />
             </div>
             <div className="min-w-0 flex-1">

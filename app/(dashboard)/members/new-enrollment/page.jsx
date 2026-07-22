@@ -100,7 +100,7 @@ export default function NewMemberEnrollmentPage() {
           </nav>
         </div>
         <Link href="/members/directory">
-          <Button type="button" variant="secondary" leftIcon={<ArrowLeft className="h-4 w-4" />}>
+          <Button type="button" variant="secondary" className="text-[#00796b]" leftIcon={<ArrowLeft className="h-4 w-4 text-[#00796b]" />}>
             Back to Member Directory
           </Button>
         </Link>

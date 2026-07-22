@@ -3,13 +3,13 @@
 import { Users } from "lucide-react";
 import { Input, Select, Textarea } from "@/components/ui/Input";
 import { REFERRED_BY_OPTIONS, SOURCE_OF_INFORMATION_OPTIONS, REASON_FOR_JOINING_OPTIONS, MEMBERSHIP_TYPE_OPTIONS, PREFERRED_LANGUAGE_OPTIONS } from "@/utils/constants";
-
+import { FaUsers } from "react-icons/fa";
 export default function Step1EnrollmentDetails({ form , nav }) {
   const { register, formState: { errors } } = form;
 
   return (
     <div>
-      <h2 className="font-display text-base font-semibold text-ink">Enrollment Details</h2>
+      <h2 className="font-display text-[22px] font-semibold text-[#00796b]">Enrollment Details</h2>
       <p className="mb-5 text-sm text-ink-subtle">Enter the basic enrollment information for the new member.</p>
 
       <div className="grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-3">
@@ -45,13 +45,13 @@ export default function Step1EnrollmentDetails({ form , nav }) {
         </Select>
       </div>
 
-      <div className="my-5 flex gap-3 rounded-lg bg-interactive-50 p-4">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-interactive-500">
-          <Users className="h-4 w-4" />
+      <div className="my-5 flex gap-3 rounded-lg bg-white border p-4">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-sm bg-[#EEF5FF] text-interactive-500">
+          <FaUsers className="h-4 w-4" />
         </div>
         <div>
-          <p className="text-sm font-semibold text-ink">Welcome Note</p>
-          <p className="text-xs text-ink-muted">
+          <p className="text-sm font-semibold text-[#00796b]">Welcome Note</p>
+          <p className="text-xs text-[#4F5C82]">
             We are delighted that you are choosing to become a part of CSI St. John&apos;s Church. Please fill in the details and our team will get in touch with you.
           </p>
         </div>

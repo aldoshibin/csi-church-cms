@@ -21,6 +21,9 @@ import { RecentNotesPanel } from "@/components/visitors/RecentNotesPanel";
 import { VisitorCheckInWidget } from "@/components/visitors/VisitorCheckInWidget";
 import { StatusDot, VISITOR_STATUS_COLOR, FOLLOW_UP_COLOR } from "@/components/visitors/StatusDot";
 import { VISITOR_STATUS_OPTIONS, FOLLOW_UP_STATUS_OPTIONS } from "@/utils/constants";
+import { FaUsers } from "react-icons/fa6";
+import clsx from "clsx";
+import { render } from "react-dom";
 
 const STATUS_LABEL = Object.fromEntries(VISITOR_STATUS_OPTIONS.map((o) => [o.value, o.label]));
 const FOLLOW_UP_LABEL = Object.fromEntries(FOLLOW_UP_STATUS_OPTIONS.map((o) => [o.value, o.label]));
@@ -51,7 +54,6 @@ export default function VisitorManagementPage() {
   const handleExport = async () => {
     setIsExporting(true);
     try {
-      // BEST-GUESS — no confirmed export endpoint; mirrors memberService.exportExcel's shape.
       await visitorService.list({ export: "excel" });
       toast({ variant: "success", title: "Export requested" });
     } catch {
@@ -68,7 +70,13 @@ export default function VisitorManagementPage() {
       render: (row) => (
         <div className="flex items-center gap-2">
           <span className="font-medium text-ink">{row.full_name}</span>
-          <StatusDot color={VISITOR_STATUS_COLOR[row.status]} label={row.status === "RETURNING_VISITOR" ? "Returning" : "New"} />
+          <p
+            className={clsx(
+              "rounded-full px-1.5 py-0.5 text-[11px] font-semibold",
+              row.status === "RETURNING_VISITOR" ? "bg-[#e5f0ff] text-[#009688]" : "bg-[#dff7e9] text-[#078048]"
+            )}
+          >{row.status === "RETURNING_VISITOR" ? "Returning" : "New"}</p>
+          {/* <StatusDot color={VISITOR_STATUS_COLOR[row.status]} label={row.status === "RETURNING_VISITOR" ? "Returning" : "New"} /> */}
         </div>
       ),
     },
@@ -101,7 +109,13 @@ export default function VisitorManagementPage() {
     {
       key: "follow_up_status",
       header: "Follow-up",
-      render: (row) => <StatusDot color={FOLLOW_UP_COLOR[row.follow_up_status]} label={FOLLOW_UP_LABEL[row.follow_up_status] || "Pending"} />,
+      render: (row) => (
+        <div className="flex items-center">
+          <StatusDot color={FOLLOW_UP_COLOR[row.follow_up_status]} />
+          <p className={clsx("font-semibold text-xs",row.follow_up_status ==  "PENDING" ? "text-[#E8983A]" : row.follow_up_status == "CONTACTED"? "text-[#16A34A]":row.follow_up_status =="INVITED" ? "text-[#3B82F6]": row.follow_up_status == "MEMBER" ? "text-[#16A34A]"  : "text-gray-500")}>{FOLLOW_UP_LABEL[row.follow_up_status]}</p>
+        </div>
+      )
+      // render: (row) => <StatusDot color={FOLLOW_UP_COLOR[row.follow_up_status]} label={FOLLOW_UP_LABEL[row.follow_up_status] || "Pending"} />,
     },
     {
       key: "actions",
@@ -143,13 +157,13 @@ export default function VisitorManagementPage() {
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {[
-          { label: "Total Visitors", ...mock.cards.totalVisitors, icon: Users },
+          { label: "Total Visitors", ...mock.cards.totalVisitors, icon: FaUsers },
           { label: "New Visitors", ...mock.cards.newVisitors, icon: UserPlus },
           { label: "Returning Visitors", ...mock.cards.returningVisitors, icon: RefreshCw },
-          { label: "Visitors Converted", ...mock.cards.visitorsConverted, icon: UserCheck },
+          { label: "Visitors Converted", ...mock.cards.visitorsConverted, icon: Users },
         ].map((card) => (
           <div key={card.label} className="rounded-lg border border-border bg-white p-4 shadow-card">
-            <div className="flex items-start gap-3">
+            <div className="flex justify-center items-center gap-3">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-brand-700 text-white">
                 <card.icon className="h-5 w-5" />
               </div>
@@ -182,11 +196,11 @@ export default function VisitorManagementPage() {
           <div className="min-w-0 rounded-lg border border-border bg-white shadow-card">
             <div className="flex flex-wrap items-center justify-between gap-2 p-4">
               <h3 className="text-base font-bold text-interactive-500">Visitor List</h3>
-              {isUsingMockData && (
+              {/* {isUsingMockData && (
                 <span className="rounded-full bg-warning-50 px-2.5 py-0.5 text-xs font-medium text-warning-600">
                   Showing sample data — /visitors/ endpoint not reachable yet
                 </span>
-              )}
+              )} */}
             </div>
             <Table
               columns={columns}

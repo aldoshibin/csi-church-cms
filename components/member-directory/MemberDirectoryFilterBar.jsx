@@ -2,7 +2,7 @@
 
 import { Search, SlidersHorizontal, RotateCcw } from "lucide-react";
 import { MEMBERSHIP_STATUS_OPTIONS, GENDER_OPTIONS, MEMBER_CATEGORY_OPTIONS } from "@/utils/constants";
-
+import { FaFilter } from "react-icons/fa6";
 
 export function MemberDirectoryFilterBar({ onSearchChange, onStatusChange, onBranchChange, onGenderChange, onReset }) {
   return (
@@ -17,7 +17,8 @@ export function MemberDirectoryFilterBar({ onSearchChange, onStatusChange, onBra
             className="h-10 w-full rounded-md border border-border pl-9 pr-3 text-sm text-ink placeholder:text-ink-subtle"
           />
         </div>
-
+         <div className="flex flex-col gap-1.5">
+        <span className="text-[12px] font-medium text-[#071351]">Member Category</span>
         <select onChange={(e) => onBranchChange(e.target.value)} defaultValue="" className="h-10 w-40 rounded-md border border-border px-3 text-sm text-ink">
           <option value="">All Branches</option>
           <option>St. John's Church (Main)</option>
@@ -25,21 +26,27 @@ export function MemberDirectoryFilterBar({ onSearchChange, onStatusChange, onBra
           <option>CSI Church (West)</option>
           <option>St. Thomas Church (South)</option>
         </select>
-
+        </div>
+ <div className="flex flex-col gap-1.5">
+        <span className="text-[12px] font-medium text-[#071351]">Member Type</span>
         <select defaultValue="" className="h-10 w-40 rounded-md border border-border px-3 text-sm text-ink">
           <option value="">All Categories</option>
           {MEMBER_CATEGORY_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
-
+       </div> 
+ <div className="flex flex-col gap-1.5">
+        <span className="text-[12px] font-medium text-[#071351]">Membership Status</span>
         <select onChange={(e) => onStatusChange(e.target.value)} defaultValue="" className="h-10 w-36 rounded-md border border-border px-3 text-sm text-ink">
           <option value="">All Status</option>
           {MEMBERSHIP_STATUS_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
-
+</div>
+ <div className="flex flex-col gap-1.5">
+        <span className="text-[12px] font-medium text-[#071351]">Age Group</span>
         <select defaultValue="" className="h-10 w-36 rounded-md border border-border px-3 text-sm text-ink">
           <option value="">All Age Groups</option>
           <option>Children (0-12)</option>
@@ -47,21 +54,24 @@ export function MemberDirectoryFilterBar({ onSearchChange, onStatusChange, onBra
           <option>Adults (18+)</option>
           <option>Senior (60+)</option>
         </select>
-
+</div>
+ <div className="flex flex-col gap-1.5">
+        <span className="text-[12px] font-medium text-[#071351]">Gender</span>
         <select onChange={(e) => onGenderChange(e.target.value)} defaultValue="" className="h-10 w-32 rounded-md border border-border px-3 text-sm text-ink">
           <option value="">All</option>
           {GENDER_OPTIONS.map((opt) => (
             <option key={opt.value} value={opt.value}>{opt.label}</option>
           ))}
         </select>
-
-        <button onClick={onReset} className="flex h-10 items-center gap-2 rounded-md border border-border bg-white px-4 text-sm font-medium text-ink hover:bg-surface-muted">
-          <RotateCcw className="h-3.5 w-3.5" /> Reset
+</div>
+        <button onClick={onReset} className="flex h-10 items-center gap-2 rounded-md border border-border bg-white px-4 text-sm font-medium text-[#00796b] hover:bg-surface-muted">
+          {/* <RotateCcw className="h-3.5 w-3.5" /> */}
+           Reset
         </button>
       </div>
 
       <button className="flex h-9 items-center gap-2 rounded-md border border-border bg-white px-3 text-sm font-medium text-ink hover:bg-surface-muted">
-        <SlidersHorizontal className="h-3.5 w-3.5" /> More Filters
+        <FaFilter className="h-3.5 w-3.5" /> More Filters
       </button>
     </div>
   );
