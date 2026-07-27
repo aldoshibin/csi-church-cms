@@ -1,8 +1,9 @@
 "use client";
 
 import { Church, Wine, Bird, Heart, HeartHandshake, ArrowRight } from "lucide-react";
-
-const ICONS = { church: Church, wine: Wine, dove: Bird, rings: Heart, "heart-hands": HeartHandshake };
+import { FaHandHoldingHeart } from "react-icons/fa";
+import { FaChurch } from "react-icons/fa";
+const ICONS = { church: FaChurch, wine: Wine, dove: Bird, rings: Heart, "heart-hands": FaHandHoldingHeart };
 
 export function RecordsThisMonthPanel({ items, onViewMonthlyReport }) {
   return (

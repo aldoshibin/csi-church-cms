@@ -1,14 +1,16 @@
 "use client";
 
 import { Mail, StickyNote, CheckCircle2, FileBarChart, Settings2 } from "lucide-react";
+import { FaRegEdit } from "react-icons/fa";
+import { FaGears } from "react-icons/fa6";
 
 export function InactiveQuickActionsPanel({ onSendReminder, onAddNote, onMarkActive, onExportReport }) {
   const actions = [
     { label: "Send Reminder (Email/SMS)", icon: Mail, onClick: onSendReminder },
-    { label: "Add Follow-up Note", icon: StickyNote, onClick: onAddNote },
+    { label: "Add Follow-up Note", icon: FaRegEdit, onClick: onAddNote },
     { label: "Mark as Active", icon: CheckCircle2, onClick: onMarkActive },
     { label: "Generate Inactive Members Report", icon: FileBarChart, onClick: onExportReport },
-    { label: "Customize Inactive Criteria", icon: Settings2, disabled: true, hint: "No settings endpoint yet" },
+    { label: "Customize Inactive Criteria", icon: FaGears, disabled: true, hint: "No settings endpoint yet" },
   ];
 
   return (

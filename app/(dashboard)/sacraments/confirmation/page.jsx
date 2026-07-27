@@ -50,10 +50,14 @@ export default function ConfirmationRegisterPage() {
         <FormSelect label="Church"><option value="">All Churches</option></FormSelect>
         <FormSelect label="Confirmed By"><option value="">All Priests</option></FormSelect>
         <FormSelect label="Status"><option value="">All Status</option><option>Confirmed</option><option>Pending</option><option>Draft</option></FormSelect>
-      </div>
-      <Button variant="ghost" size="sm" className="mb-4" leftIcon={<Filter className="h-3.5 w-3.5" />} rightIcon={<ChevronDown className="h-3.5 w-3.5" />}>
+      {/* <Button variant="ghost" size="sm" className="mb-4" leftIcon={<Filter className="h-3.5 w-3.5" />} rightIcon={<ChevronDown className="h-3.5 w-3.5" />}>
         More Filters
-      </Button>
+      </Button> */}
+      <Button type="button" variant="secondary" size="sm" leftIcon={<Filter className="h-3.5 w-3.5" />} rightIcon={<ChevronDown className="h-3.5 w-3.5" />}>
+            More Filters
+          </Button>
+      </div>
+      
 
       <div className="overflow-hidden rounded-lg border border-border bg-white shadow-card">
         <div className="min-w-0 overflow-x-auto">

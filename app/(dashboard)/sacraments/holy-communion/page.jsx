@@ -5,12 +5,13 @@ import { Trophy, Users, CalendarDays, Cross, Calendar, Search, Plus, Download, R
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { FormSelect } from "@/components/sacraments/confirmation/formFields";
+import { FaCross } from "react-icons/fa6";
 
 const STATS = [
   { label: "Total Communicants", sub: "All Time", value: "256", icon: Trophy, tint: "bg-success-50 text-success-600" },
   { label: "This Year", sub: "Year 2025", value: "28", icon: Users, tint: "bg-interactive-50 text-interactive-600" },
   { label: "This Month", sub: "May 2025", value: "5", icon: CalendarDays, tint: "bg-violet-50 text-violet-600" },
-  { label: "Upcoming Celebration", sub: "Next Holy Communion", value: "01 Jun 2025", icon: Cross, tint: "bg-warning-50 text-warning-600" },
+  { label: "Upcoming Celebration", sub: "Next Holy Communion", value: "01 Jun 2025", icon: FaCross, tint: "bg-warning-50 text-warning-600" },
 ];
 
 const ROWS = [

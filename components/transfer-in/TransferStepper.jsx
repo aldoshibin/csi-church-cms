@@ -23,7 +23,7 @@ export function TransferStepper({ currentStep, completedSteps, onStepClick }) {
               <span
                 className={cn(
                   "flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-semibold",
-                  isCompleted ? "bg-success-500 text-white" : isCurrent ? "bg-interactive-500 text-white" : "bg-surface-muted text-ink-subtle"
+                  isCompleted ? "bg-success-500 text-white" : isCurrent ? "bg-interactive-500 text-white shadow-[0_8px_16px_rgba(0,150,199,0.20)]" : "bg-surface-muted text-ink-subtle"
                 )}
               >
                 {isCompleted ? <Check className="h-3.5 w-3.5" /> : step.key}

@@ -138,11 +138,11 @@ export default function SeniorCitizenRegistryPage() {
               <>
                 <div className="flex flex-wrap items-center justify-between gap-2 p-4">
                   <h3 className="text-base font-bold text-interactive-500">Senior Members ({totalCount.toLocaleString()})</h3>
-                  {isUsingMockData && (
+                  {/* {isUsingMockData && (
                     <span className="rounded-full bg-warning-50 px-2.5 py-0.5 text-xs font-medium text-warning-600">
                       Showing sample data — no confirmed "senior member" filter on the backend yet
                     </span>
-                  )}
+                  )} */}
                 </div>
                 <Table
                   columns={columns}

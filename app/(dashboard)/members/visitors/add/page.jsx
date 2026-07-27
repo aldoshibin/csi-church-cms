@@ -9,7 +9,6 @@ import { useAddVisitorForm } from "@/hooks/useAddVisitorForm";
 import PersonalInformationSection from "@/components/visitors/add/PersonalInformationSection";
 import VisitInformationSection from "@/components/visitors/add/VisitInformationSection";
 import CompanionDetailsSection from "@/components/visitors/add/CompanionDetailsSection";
-import CompanionModal from "@/components/visitors/add/CompanionModal";
 import PrivacyCommunicationSection from "@/components/visitors/add/PrivacyCommunicationSection";
 import { VisitorGuidelinesPanel } from "@/components/visitors/add/VisitorGuidelinesPanel";
 import { VisitSummaryPreviewPanel } from "@/components/visitors/add/VisitSummaryPreviewPanel";
@@ -17,8 +16,8 @@ import { VisitSummaryPreviewPanel } from "@/components/visitors/add/VisitSummary
 export default function AddNewVisitorPage() {
   const router = useRouter();
   const {
-    form, fullName, companionFields, companionModalOpen, openCompanionModal,
-    closeCompanionModal, addCompanion, removeCompanion, isSubmitting, resetForm, submit,
+    form, fullName, companionFields, addCompanion, removeCompanion,
+    isSubmitting, resetForm, submit,
   } = useAddVisitorForm();
 
   const values = form.getValues();
@@ -27,6 +26,10 @@ export default function AddNewVisitorPage() {
     const result = await submit();
     if (result?.ok) router.push("/members/visitors");
   };
+
+  // "Add Companion" now appends a blank, directly-editable row instead
+  // of opening a modal first — matches the screenshot's inline table.
+  const handleAddCompanion = () => addCompanion({ name: "", relationship: "", phone: "" });
 
   return (
     <div className="space-y-5 pb-6">
@@ -51,7 +54,12 @@ export default function AddNewVisitorPage() {
           <div className="space-y-4 lg:col-span-2">
             <PersonalInformationSection form={form} />
             <VisitInformationSection form={form} />
-            <CompanionDetailsSection companionFields={companionFields} onAdd={openCompanionModal} onRemove={removeCompanion} />
+            <CompanionDetailsSection
+              form={form}
+              companionFields={companionFields}
+              onAdd={handleAddCompanion}
+              onRemove={removeCompanion}
+            />
             <PrivacyCommunicationSection form={form} />
           </div>
 
@@ -76,8 +84,6 @@ export default function AddNewVisitorPage() {
           </Button>
         </div>
       </form>
-
-      <CompanionModal open={companionModalOpen} onClose={closeCompanionModal} onSave={addCompanion} />
     </div>
   );
 }

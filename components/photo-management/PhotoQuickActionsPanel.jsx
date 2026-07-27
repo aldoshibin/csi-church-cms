@@ -1,14 +1,16 @@
 "use client";
 
 import { Upload, UserPlus, RefreshCw, Trash2, FileBarChart } from "lucide-react";
+import { FaRegEdit } from "react-icons/fa";
+import { FaFileExport } from "react-icons/fa6";
 
 export function PhotoQuickActionsPanel({ onBulkUpload, onAddPhoto, onUpdatePhoto, onRemovePhoto, onExportReport }) {
   const actions = [
-    { label: "Bulk Upload Photos", icon: Upload, onClick: onBulkUpload },
-    { label: "Add Photo for Member", icon: UserPlus, onClick: onAddPhoto },
+    { label: "Bulk Upload Photos", icon: UserPlus, onClick: onBulkUpload },
+    { label: "Add Photo for Member", icon: FaRegEdit, onClick: onAddPhoto },
     { label: "Update Member Photo", icon: RefreshCw, onClick: onUpdatePhoto },
     { label: "Remove Member Photo", icon: Trash2, onClick: onRemovePhoto },
-    { label: "Export Photo Report", icon: FileBarChart, onClick: onExportReport },
+    { label: "Export Photo Report", icon: FaFileExport, onClick: onExportReport },
   ];
 
   return (

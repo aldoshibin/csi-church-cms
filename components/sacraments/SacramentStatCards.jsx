@@ -1,8 +1,11 @@
 "use client";
 
 import { Church, Wine, Bird, Heart, Cross, HeartHandshake, ArrowRight } from "lucide-react";
+import { FaChurch } from "react-icons/fa";
+import { FaCross } from "react-icons/fa6";
+import { FaHandHoldingHeart } from "react-icons/fa";
 
-const ICONS = { church: Church, wine: Wine, dove: Bird, rings: Heart, cross: Cross, "heart-hands": HeartHandshake };
+const ICONS = { church: FaChurch, wine: Wine, dove: Bird, rings: Heart, cross: FaCross, "heart-hands": FaHandHoldingHeart };
 const TONE = {
   teal: "bg-interactive-50 text-interactive-600",
   purple: "bg-[#F3EEFE] text-[#8B5CF6]",
@@ -18,10 +21,11 @@ export function SacramentStatCards({ cards, onViewDetails }) {
       {cards.map((card) => {
         const Icon = ICONS[card.icon] ?? Church;
         return (
-          <div key={card.key} className="rounded-lg border border-border bg-white p-4 shadow-card">
-            <div className={`mb-3 flex h-11 w-11 items-center justify-center rounded-full ${TONE[card.tone] ?? TONE.teal}`}>
+          <div key={card.key} className="rounded-lg border border-border bg-white p-4 shadow-card flex justify-center items-center gap-4">
+            <div className={`mb-3 flex  h-11 w-11 items-center justify-center rounded-full ${TONE[card.tone] ?? TONE.teal}`}>
               <Icon className="h-5 w-5" />
             </div>
+            <div>
             <p className="text-sm font-semibold text-ink">{card.label}</p>
             <p className="mt-0.5 text-xl font-bold text-ink font-display">{card.value}</p>
             <p className="text-xs text-ink-subtle">{card.sublabel}</p>
@@ -32,6 +36,7 @@ export function SacramentStatCards({ cards, onViewDetails }) {
             >
               View Details <ArrowRight className="h-3 w-3" />
             </button>
+            </div>
           </div>
         );
       })}

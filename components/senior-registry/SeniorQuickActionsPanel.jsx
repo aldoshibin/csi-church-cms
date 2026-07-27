@@ -1,14 +1,16 @@
 "use client";
 
 import { UserPlus, HeartPulse, StickyNote, FileBarChart, Download } from "lucide-react";
+import { FaRegEdit } from "react-icons/fa";
+import { FaFileExport } from "react-icons/fa6";
 
 export function SeniorQuickActionsPanel({ onAddMember, onUpdateHealth, onAddNote, onExport }) {
   const actions = [
     { label: "Add Senior Member", icon: UserPlus, onClick: onAddMember },
-    { label: "Update Health Information", icon: HeartPulse, onClick: onUpdateHealth },
+    { label: "Update Health Information", icon: FaRegEdit, onClick: onUpdateHealth },
     { label: "Add Assistance / Support Note", icon: StickyNote, onClick: onAddNote },
     { label: "Generate Senior Members Report", icon: FileBarChart, disabled: true, hint: "No report-generation endpoint yet" },
-    { label: "Export Senior Members List", icon: Download, onClick: onExport },
+    { label: "Export Senior Members List", icon: FaFileExport, onClick: onExport },
   ];
 
   return (

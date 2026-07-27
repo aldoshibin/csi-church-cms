@@ -1,11 +1,11 @@
 "use client";
 
 import { UserPlus, Pencil, StickyNote, CalendarClock, FileBarChart, Download } from "lucide-react";
-
+import { FaRegEdit } from "react-icons/fa";
 export function WidowWidowerQuickActionsPanel({ onAddMember, onUpdateDetails, onAddNote, onExport }) {
   const actions = [
     { label: "Add Widow / Widower", icon: UserPlus, onClick: onAddMember },
-    { label: "Update Member Details", icon: Pencil, onClick: onUpdateDetails },
+    { label: "Update Member Details", icon: FaRegEdit, onClick: onUpdateDetails },
     { label: "Add Support / Assistance Note", icon: StickyNote, onClick: onAddNote },
     { label: "Schedule Pastoral Visit", icon: CalendarClock, disabled: true, hint: "No scheduling endpoint yet" },
     { label: "Generate Registry Report", icon: FileBarChart, disabled: true, hint: "No report-generation endpoint yet" },

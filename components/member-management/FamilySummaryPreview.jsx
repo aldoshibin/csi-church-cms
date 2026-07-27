@@ -1,4 +1,5 @@
 import { Users } from "lucide-react";
+import { FaPeopleGroup } from "react-icons/fa6";
 
 export function FamilySummaryPreview({ form, memberCount }) {
   const adults = form.membersAges?.filter((a) => a >= 18).length ?? 0;
@@ -10,7 +11,7 @@ export function FamilySummaryPreview({ form, memberCount }) {
 
       <div className="mb-4 flex items-center gap-3">
         <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-interactive-50 text-interactive-500">
-          <Users className="h-7 w-7" />
+          <FaPeopleGroup className="h-7 w-7" />
         </div>
         <div>
           <p className="text-base font-bold text-ink">{form.family_name?.trim() || "New Family"}</p>

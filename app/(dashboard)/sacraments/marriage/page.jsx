@@ -5,11 +5,12 @@ import { Users, CalendarDays, Church, UsersRound, Search, Calendar, Plus, Filter
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { FormSelect } from "@/components/sacraments/confirmation/formFields";
+import { LiaChurchSolid } from "react-icons/lia";
 
 const STATS = [
   { label: "Total Marriages", sub: "All Time", value: "128", icon: Users, tint: "bg-success-50 text-success-600" },
   { label: "This Year", sub: "Year 2025", value: "12", icon: CalendarDays, tint: "bg-success-50 text-success-600" },
-  { label: "This Month", sub: "May 2025", value: "2", icon: Church, tint: "bg-success-50 text-success-600" },
+  { label: "This Month", sub: "May 2025", value: "2", icon: LiaChurchSolid, tint: "bg-success-50 text-success-600" },
   { label: "Upcoming (Next 30 Days)", sub: "Next 30 Days", value: "3", icon: UsersRound, tint: "bg-success-50 text-success-600" },
 ];
 
