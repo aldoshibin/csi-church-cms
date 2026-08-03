@@ -34,7 +34,7 @@ export function SelectInput({ children, ...props }) {
 export function PhoneInput({ ...props }) {
   return (
     <div className="flex">
-      <span className="flex items-center gap-1.5 rounded-l-md border border-r-0 border-border bg-surface-muted px-2.5 text-sm text-ink">
+      <span className="flex whitespace-nowrap items-center gap-1.5 rounded-l-md border border-r-0 border-border bg-surface-muted px-2.5 text-sm text-ink">
         🇮🇳 +91
       </span>
       <input {...props} className={inputCls + " rounded-l-none"} />
