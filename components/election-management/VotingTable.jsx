@@ -1,0 +1,64 @@
+"use client";
+
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { useRouter } from "next/navigation";
+import { Eye, MoreVertical, Mail, Download } from "lucide-react";
+import { Badge } from "@/components/ui/Badge";
+import { Table } from "@/components/ui/Table";
+import { formatDateTime } from "@/lib/utils";
+import { VOTING_STATUS_BADGE_MAP } from "@/lib/mock/vmVotingMockData";
+
+const menuItemClass =
+  "flex w-full items-center gap-2 rounded px-2.5 py-2 text-sm text-ink-muted outline-none transition-colors hover:bg-surface-canvas hover:text-ink focus:bg-surface-canvas cursor-pointer";
+
+export function VotingTable({ voters, isLoading, page, pageSize, totalCount, onPageChange, emptyMessage = "No voters found." }) {
+  const router = useRouter();
+  const handleView = (v) => router.push(`/election-management/voting/${v.id}`);
+
+  const columns = [
+    { key: "voter", header: "Voter", render: (v) => (
+      <button type="button" onClick={() => handleView(v)} className="flex items-center gap-3 text-left">
+        <img src={`https://i.pravatar.cc/64?u=${encodeURIComponent(v.email)}`} alt="" className="h-10 w-10 shrink-0 rounded-full object-cover" />
+        <span>
+          <span className="block font-medium text-interactive-600 hover:underline">{v.name}</span>
+          <span className="block text-xs text-ink-subtle">{v.membershipNumber}</span>
+        </span>
+      </button>
+    ) },
+    { key: "election", header: "Election", render: (v) => <span className="text-ink">{v.election}</span> },
+    { key: "membershipType", header: "Membership Type", render: (v) => <span className="text-ink">{v.membershipType}</span> },
+    { key: "status", header: "Voting Status", render: (v) => <Badge variant={VOTING_STATUS_BADGE_MAP[v.votingStatus] ?? "info"}>{v.votingStatus}</Badge> },
+    { key: "votedOn", header: "Voted On", render: (v) => (
+      <span className="text-ink">{v.votedOn ? formatDateTime(v.votedOn) : "—"}</span>
+    ) },
+    { key: "actions", header: "Actions", render: (v) => (
+      <div className="flex items-center gap-1">
+        <button type="button" onClick={() => handleView(v)} className="flex h-8 w-8 items-center justify-center rounded-md text-ink-subtle hover:bg-surface-canvas" aria-label="View voter">
+          <Eye className="h-4 w-4" />
+        </button>
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger asChild>
+            <button type="button" className="flex h-8 w-8 items-center justify-center rounded-md text-ink-subtle hover:bg-surface-canvas" aria-label="More actions">
+              <MoreVertical className="h-4 w-4" />
+            </button>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content align="end" sideOffset={6} className="z-50 w-52 rounded-md border border-border bg-white p-1.5 shadow-elevated animate-fade-in">
+              <DropdownMenu.Item className={menuItemClass} onSelect={() => handleView(v)}><Eye className="h-4 w-4" /> View Voting Details</DropdownMenu.Item>
+              <DropdownMenu.Item className={menuItemClass}><Mail className="h-4 w-4" /> Send Reminder</DropdownMenu.Item>
+              <DropdownMenu.Item className={menuItemClass}><Download className="h-4 w-4" /> Export Voter Data</DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
+      </div>
+    ) },
+  ];
+
+  return (
+    <Table
+      columns={columns} data={voters} isLoading={isLoading} selectable
+      emptyMessage={emptyMessage}
+      pagination={{ page, pageSize, totalCount, onPageChange }}
+    />
+  );
+}

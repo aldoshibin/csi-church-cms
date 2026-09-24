@@ -1,0 +1,56 @@
+"use client";
+
+import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { MoreVertical, Eye, Pencil, BookOpen, LayoutGrid, CalendarClock, StickyNote, FileText, Ban, Trash2 } from "lucide-react";
+
+const itemClass =
+  "flex w-full items-center gap-2 rounded px-2.5 py-2 text-sm text-ink-muted outline-none transition-colors hover:bg-surface-canvas hover:text-ink focus:bg-surface-canvas cursor-pointer";
+
+export function TeacherRowActionsMenu({ teacher, onViewDetails, onEdit, onAssignToClass, onManageClasses, onViewSchedule, onAddNote, onViewDocuments, onDeactivate, onDelete }) {
+  return (
+    <DropdownMenu.Root>
+      <DropdownMenu.Trigger asChild>
+        <button
+          type="button"
+          onClick={(e) => e.stopPropagation()}
+          className="flex h-8 w-8 items-center justify-center rounded-md border border-border text-ink-subtle hover:bg-surface-canvas"
+          aria-label={`More actions for ${teacher.name}`}
+        >
+          <MoreVertical className="h-4 w-4" />
+        </button>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content align="end" sideOffset={6} className="z-50 w-52 rounded-md border border-border bg-white p-1.5 shadow-elevated animate-fade-in">
+          <DropdownMenu.Item className={itemClass} onSelect={() => onViewDetails?.(teacher)}>
+            <Eye className="h-4 w-4" /> View Details
+          </DropdownMenu.Item>
+          <DropdownMenu.Item className={itemClass} onSelect={() => onEdit?.(teacher)}>
+            <Pencil className="h-4 w-4" /> Edit Teacher
+          </DropdownMenu.Item>
+          <DropdownMenu.Item className={itemClass} onSelect={() => onAssignToClass?.(teacher)}>
+            <BookOpen className="h-4 w-4" /> Assign to Class
+          </DropdownMenu.Item>
+          <DropdownMenu.Item className={itemClass} onSelect={() => onManageClasses?.(teacher)}>
+            <LayoutGrid className="h-4 w-4" /> Manage Classes
+          </DropdownMenu.Item>
+          <DropdownMenu.Item className={itemClass} onSelect={() => onViewSchedule?.(teacher)}>
+            <CalendarClock className="h-4 w-4" /> View Schedule
+          </DropdownMenu.Item>
+          <DropdownMenu.Item className={itemClass} onSelect={() => onAddNote?.(teacher)}>
+            <StickyNote className="h-4 w-4" /> Add Note
+          </DropdownMenu.Item>
+          <DropdownMenu.Item className={itemClass} onSelect={() => onViewDocuments?.(teacher)}>
+            <FileText className="h-4 w-4" /> View Documents
+          </DropdownMenu.Item>
+          <DropdownMenu.Item className={itemClass} onSelect={() => onDeactivate?.(teacher)}>
+            <Ban className="h-4 w-4" /> Deactivate Teacher
+          </DropdownMenu.Item>
+          <DropdownMenu.Separator className="my-1 h-px bg-border" />
+          <DropdownMenu.Item className={`${itemClass} text-danger-600 hover:text-danger-600`} onSelect={() => onDelete?.(teacher)}>
+            <Trash2 className="h-4 w-4" /> Delete Teacher
+          </DropdownMenu.Item>
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
+  );
+}

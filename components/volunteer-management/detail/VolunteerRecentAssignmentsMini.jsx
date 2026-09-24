@@ -1,0 +1,35 @@
+"use client";
+
+import { CalendarDays } from "lucide-react";
+import { Badge } from "@/components/ui/Badge";
+import { RECENT_ASSIGNMENT_STATUS_VARIANT } from "@/lib/mock/volunteersMockData";
+import { formatDate } from "@/lib/utils";
+
+export function VolunteerRecentAssignmentsMini({ assignments = [], onViewAll }) {
+  const items = assignments.slice(0, 3);
+  return (
+    <div className="rounded-lg border border-border bg-white p-4 shadow-card">
+      <div className="mb-3 flex items-center justify-between">
+        <h3 className="text-sm font-semibold text-ink">Recent Service Assignments</h3>
+        <button type="button" onClick={onViewAll} className="text-xs font-medium text-interactive-500 hover:underline">View All</button>
+      </div>
+      <div className="flex flex-col gap-3.5">
+        {items.map((a, i) => (
+          <div key={i} className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3 min-w-0">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-interactive-50 text-interactive-600">
+                <CalendarDays className="h-4 w-4" />
+              </span>
+              <div className="min-w-0">
+                <p className="truncate text-sm font-medium text-ink">{a.service}</p>
+                <p className="truncate text-xs text-ink-subtle">{formatDate(a.date)}</p>
+              </div>
+            </div>
+            <Badge variant={RECENT_ASSIGNMENT_STATUS_VARIANT[a.status] ?? "default"}>{a.status}</Badge>
+          </div>
+        ))}
+        {!items.length && <p className="text-sm text-ink-subtle">No recent assignments.</p>}
+      </div>
+    </div>
+  );
+}
